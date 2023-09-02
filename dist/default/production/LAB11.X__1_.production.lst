@@ -1,0 +1,2153 @@
+
+
+Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+                                                                                               Wed Jan 19 03:00:01 2022
+
+Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1 
+     1                           	processor	18F4520
+     2                           	fnconf	rparam,??,?,0
+     3                           	pagewidth 120
+     4                           	opt	flic
+     5                           	psect	smallconst,global,reloc=2,class=SMALLCONST,delta=1,noexec
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     8                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     9                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text1,global,reloc=2,class=CODE,delta=1,group=2
+    11                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    17                           	psect	intcodelo,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text9,global,reloc=2,class=CODE,delta=1
+    19                           	psect	intcode,global,reloc=2,class=CODE,delta=1
+    20                           	psect	intcode_body,global,reloc=2,class=CODE,delta=1
+    21                           	psect	text11,global,reloc=2,class=CODE,delta=1
+    22                           	psect	text12,global,reloc=2,class=CODE,delta=1
+    23                           	psect	text13,global,reloc=2,class=CODE,delta=1
+    24                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    25                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    26                           	psect	temp,global,ovrld,common,class=COMRAM,space=1,delta=1
+    27                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=1,noexec
+    28                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
+    29  0000                     
+    30                           ; Version 2.32
+    31                           ; Generated 02/02/2021 GMT
+    32                           ; 
+    33                           ; Copyright © 2021, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    34                           ; All rights reserved.
+    35                           ; 
+    36                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    37                           ; 
+    38                           ; Redistribution and use in source and binary forms, with or without modification, are
+    39                           ; permitted provided that the following conditions are met:
+    40                           ; 
+    41                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    42                           ;        conditions and the following disclaimer.
+    43                           ; 
+    44                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    45                           ;        of conditions and the following disclaimer in the documentation and/or other
+    46                           ;        materials provided with the distribution. Publication is not required when
+    47                           ;        this file is used in an embedded application.
+    48                           ; 
+    49                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    50                           ;        software without specific prior written permission.
+    51                           ; 
+    52                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    53                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    54                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    55                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    56                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    57                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    58                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    59                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    60                           ; 
+    61                           ; 
+    62                           ; Code-generator required, PIC18F4520 Definitions
+    63                           ; 
+    64                           ; SFR Addresses
+    65  0000                     _INTCON2bits	set	4081
+    66  0000                     _RCONbits	set	4048
+    67  0000                     _TRISBbits	set	3987
+    68  0000                     _INTCON3bits	set	4080
+    69  0000                     _RCREG	set	4014
+    70  0000                     _TXREG	set	4013
+    71  0000                     _INTCONbits	set	4082
+    72  0000                     _ADCON2bits	set	4032
+    73  0000                     _ADCON1bits	set	4033
+    74  0000                     _ADCON0bits	set	4034
+    75  0000                     _LATD	set	3980
+    76  0000                     _TRISD	set	3989
+    77  0000                     _TRISAbits	set	3986
+    78  0000                     _IPR1bits	set	3999
+    79  0000                     _PIE1bits	set	3997
+    80  0000                     _PIR1bits	set	3998
+    81  0000                     _RCSTAbits	set	4011
+    82  0000                     _SPBRG	set	4015
+    83  0000                     _BAUDCONbits	set	4024
+    84  0000                     _TXSTAbits	set	4012
+    85  0000                     _OSCCONbits	set	4051
+    86  0000                     _TRISCbits	set	3988
+    87  0000                     _CREN	set	32092
+    88  0000                     _RCIF	set	31989
+    89                           
+    90                           	psect	smallconst
+    91  000600                     __psmallconst:
+    92                           	callstack 0
+    93  000600  00                 	db	0
+    94  000601                     STR_2:
+    95  000601  70                 	db	112	;'p'
+    96  000602  61                 	db	97	;'a'
+    97  000603  75                 	db	117	;'u'
+    98  000604  73                 	db	115	;'s'
+    99  000605  65                 	db	101	;'e'
+   100  000606  0A                 	db	10
+   101  000607  00                 	db	0
+   102  000608                     STR_1:
+   103  000608  47                 	db	71	;'G'
+   104  000609  6F                 	db	111	;'o'
+   105  00060A  21                 	db	33
+   106  00060B  0A                 	db	10
+   107  00060C  00                 	db	0
+   108  00060D                     STR_3:
+   109  00060D  52                 	db	82	;'R'
+   110  00060E  0A                 	db	10
+   111  00060F  00                 	db	0
+   112  000610  00                 	db	0	; dummy byte at the end
+   113  0000                     
+   114                           ; #config settings
+   115                           
+   116                           	psect	cinit
+   117  000A1E                     __pcinit:
+   118                           	callstack 0
+   119  000A1E                     start_initialization:
+   120                           	callstack 0
+   121  000A1E                     __initialization:
+   122                           	callstack 0
+   123                           
+   124                           ; Clear objects allocated to COMRAM (42 bytes)
+   125  000A1E  EE00  F001         	lfsr	0,__pbssCOMRAM
+   126  000A22  0E2A               	movlw	42
+   127  000A24                     clear_0:
+   128  000A24  6AEE               	clrf	postinc0,c
+   129  000A26  06E8               	decf	wreg,f,c
+   130  000A28  E1FD               	bnz	clear_0
+   131  000A2A                     end_of_initialization:
+   132                           	callstack 0
+   133  000A2A                     __end_of__initialization:
+   134                           	callstack 0
+   135  000A2A  9045               	bcf	int$flags,0,c	;clear compiler interrupt flag (level 1)
+   136  000A2C  9245               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+   137  000A2E  0E00               	movlw	low (__Lsmallconst shr (0+16))
+   138  000A30  6EF8               	movwf	tblptru,c
+   139  000A32  0E06               	movlw	high __Lsmallconst
+   140  000A34  6EF7               	movwf	tblptrh,c
+   141  000A36  0100               	movlb	0
+   142  000A38  EF6C  F003         	goto	_main	;jump to C main() function
+   143                           
+   144                           	psect	bssCOMRAM
+   145  000001                     __pbssCOMRAM:
+   146                           	callstack 0
+   147  000001                     _lenStr:
+   148                           	callstack 0
+   149  000001                     	ds	2
+   150  000003                     _str:
+   151                           	callstack 0
+   152  000003                     	ds	20
+   153  000017                     _buffer:
+   154                           	callstack 0
+   155  000017                     	ds	20
+   156                           
+   157                           	psect	cstackCOMRAM
+   158  00002B                     __pcstackCOMRAM:
+   159                           	callstack 0
+   160  00002B                     i2UART_Write@data:
+   161                           	callstack 0
+   162  00002B                     delay@num:
+   163                           	callstack 0
+   164                           
+   165                           ; 2 bytes @ 0x0
+   166  00002B                     	ds	1
+   167  00002C                     UART_Write_Text@text:
+   168                           	callstack 0
+   169                           
+   170                           ; 2 bytes @ 0x1
+   171  00002C                     	ds	1
+   172  00002D                     ??_delay:
+   173                           
+   174                           ; 1 bytes @ 0x2
+   175  00002D                     	ds	1
+   176  00002E                     ??_UART_Write_Text:
+   177  00002E                     delay@i:
+   178                           	callstack 0
+   179                           
+   180                           ; 2 bytes @ 0x3
+   181  00002E                     	ds	2
+   182  000030                     UART_Write_Text@i:
+   183                           	callstack 0
+   184                           
+   185                           ; 2 bytes @ 0x5
+   186  000030                     	ds	2
+   187  000032                     ??_HI_ISR:
+   188                           
+   189                           ; 1 bytes @ 0x7
+   190  000032                     	ds	4
+   191  000036                     ??_Lo_ISR:
+   192                           
+   193                           ; 1 bytes @ 0xB
+   194  000036                     	ds	1
+   195  000037                     UART_Write@data:
+   196                           	callstack 0
+   197  000037                     ClearBuffer@i:
+   198                           	callstack 0
+   199                           
+   200                           ; 2 bytes @ 0xC
+   201  000037                     	ds	1
+   202  000038                     ?_GetString:
+   203                           	callstack 0
+   204                           
+   205                           ; 2 bytes @ 0xD
+   206  000038                     	ds	1
+   207  000039                     
+   208                           ; 1 bytes @ 0xE
+   209  000039                     	ds	1
+   210  00003A                     GetString@i:
+   211                           	callstack 0
+   212                           
+   213                           ; 2 bytes @ 0xF
+   214  00003A                     	ds	2
+   215  00003C                     GetString@c:
+   216                           	callstack 0
+   217                           
+   218                           ; 1 bytes @ 0x11
+   219  00003C                     	ds	1
+   220  00003D                     strcpy@dest:
+   221                           	callstack 0
+   222                           
+   223                           ; 2 bytes @ 0x12
+   224  00003D                     	ds	2
+   225  00003F                     strcpy@src:
+   226                           	callstack 0
+   227                           
+   228                           ; 2 bytes @ 0x14
+   229  00003F                     	ds	2
+   230  000041                     strcpy@s:
+   231                           	callstack 0
+   232                           
+   233                           ; 2 bytes @ 0x16
+   234  000041                     	ds	2
+   235  000043                     strcpy@d:
+   236                           	callstack 0
+   237                           
+   238                           ; 2 bytes @ 0x18
+   239  000043                     	ds	2
+   240  000045                     
+   241                           ; 1 bytes @ 0x1A
+   242 ;;
+   243 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   244 ;;
+   245 ;; *************** function _main *****************
+   246 ;; Defined at:
+   247 ;;		line 125 in file "advance.c"
+   248 ;; Parameters:    Size  Location     Type
+   249 ;;		None
+   250 ;; Auto vars:     Size  Location     Type
+   251 ;;		None
+   252 ;; Return value:  Size  Location     Type
+   253 ;;                  1    wreg      void 
+   254 ;; Registers used:
+   255 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
+   256 ;; Tracked objects:
+   257 ;;		On entry : 0/0
+   258 ;;		On exit  : 0/0
+   259 ;;		Unchanged: 0/0
+   260 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   261 ;;      Params:         0       0       0       0       0       0       0
+   262 ;;      Locals:         0       0       0       0       0       0       0
+   263 ;;      Temps:          0       0       0       0       0       0       0
+   264 ;;      Totals:         0       0       0       0       0       0       0
+   265 ;;Total ram usage:        0 bytes
+   266 ;; Hardware stack levels required when called: 7
+   267 ;; This function calls:
+   268 ;;		_ClearBuffer
+   269 ;;		_GetString
+   270 ;;		_Mode3
+   271 ;;		_UART_Initialize
+   272 ;;		_VR_Initialize
+   273 ;;		_strcpy
+   274 ;; This function is called by:
+   275 ;;		Startup code after reset
+   276 ;; This function uses a non-reentrant model
+   277 ;;
+   278                           
+   279                           	psect	text0
+   280  0006D8                     __ptext0:
+   281                           	callstack 0
+   282  0006D8                     _main:
+   283                           	callstack 24
+   284  0006D8                     
+   285                           ;advance.c: 127:     UART_Initialize();
+   286  0006D8  ECEA  F004         	call	_UART_Initialize	;wreg free
+   287                           
+   288                           ;advance.c: 128:     VR_Initialize();
+   289  0006DC  ECB7  F004         	call	_VR_Initialize	;wreg free
+   290  0006E0                     l1152:
+   291                           
+   292                           ;advance.c: 130:     {;advance.c: 131:         ClearBuffer();
+   293  0006E0  EC77  F004         	call	_ClearBuffer	;wreg free
+   294  0006E4                     
+   295                           ;advance.c: 132:         strcpy(str , GetString() );
+   296  0006E4  0E03               	movlw	low _str
+   297  0006E6  6E3D               	movwf	strcpy@dest^0,c
+   298  0006E8  0E00               	movlw	high _str
+   299  0006EA  6E3E               	movwf	(strcpy@dest+1)^0,c
+   300  0006EC  ECB3  F003         	call	_GetString	;wreg free
+   301  0006F0  C038  F03F         	movff	?_GetString,strcpy@src
+   302  0006F4  C039  F040         	movff	?_GetString+1,strcpy@src+1
+   303  0006F8  EC98  F004         	call	_strcpy	;wreg free
+   304  0006FC                     
+   305                           ;advance.c: 133:         if(str[0]=='H' && str[1]=='e' && str[2] == 'l' && str[3] == 'l'
+      +                           && str[4] == 'o')
+   306  0006FC  0E48               	movlw	72
+   307  0006FE  1803               	xorwf	_str^0,w,c
+   308  000700  A4D8               	btfss	status,2,c
+   309  000702  EF85  F003         	goto	u441
+   310  000706  EF87  F003         	goto	u440
+   311  00070A                     u441:
+   312  00070A  EF70  F003         	goto	l1152
+   313  00070E                     u440:
+   314  00070E  0E65               	movlw	101
+   315  000710  1804               	xorwf	(_str+1)^0,w,c
+   316  000712  A4D8               	btfss	status,2,c
+   317  000714  EF8E  F003         	goto	u451
+   318  000718  EF90  F003         	goto	u450
+   319  00071C                     u451:
+   320  00071C  EF70  F003         	goto	l1152
+   321  000720                     u450:
+   322  000720  0E6C               	movlw	108
+   323  000722  1805               	xorwf	(_str+2)^0,w,c
+   324  000724  A4D8               	btfss	status,2,c
+   325  000726  EF97  F003         	goto	u461
+   326  00072A  EF99  F003         	goto	u460
+   327  00072E                     u461:
+   328  00072E  EF70  F003         	goto	l1152
+   329  000732                     u460:
+   330  000732  0E6C               	movlw	108
+   331  000734  1806               	xorwf	(_str+3)^0,w,c
+   332  000736  A4D8               	btfss	status,2,c
+   333  000738  EFA0  F003         	goto	u471
+   334  00073C  EFA2  F003         	goto	u470
+   335  000740                     u471:
+   336  000740  EF70  F003         	goto	l1152
+   337  000744                     u470:
+   338  000744  0E6F               	movlw	111
+   339  000746  1807               	xorwf	(_str+4)^0,w,c
+   340  000748  A4D8               	btfss	status,2,c
+   341  00074A  EFA9  F003         	goto	u481
+   342  00074E  EFAB  F003         	goto	u480
+   343  000752                     u481:
+   344  000752  EF70  F003         	goto	l1152
+   345  000756                     u480:
+   346  000756                     
+   347                           ;advance.c: 134:         {;advance.c: 135:             Mode3();
+   348  000756  ECFE  F004         	call	_Mode3	;wreg free
+   349                           
+   350                           ;advance.c: 136:             ClearBuffer();
+   351  00075A  EC77  F004         	call	_ClearBuffer	;wreg free
+   352  00075E  EF70  F003         	goto	l1152
+   353  000762  EF26  F000         	goto	start
+   354  000766                     __end_of_main:
+   355                           	callstack 0
+   356                           
+   357 ;; *************** function _strcpy *****************
+   358 ;; Defined at:
+   359 ;;		line 3 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\strcpy.c"
+   360 ;; Parameters:    Size  Location     Type
+   361 ;;  dest            2   18[COMRAM] PTR unsigned char 
+   362 ;;		 -> str(20), 
+   363 ;;  src             2   20[COMRAM] PTR const unsigned char 
+   364 ;;		 -> buffer(20), 
+   365 ;; Auto vars:     Size  Location     Type
+   366 ;;  d               2   24[COMRAM] PTR unsigned char 
+   367 ;;		 -> str(20), 
+   368 ;;  s               2   22[COMRAM] PTR const unsigned char 
+   369 ;;		 -> buffer(20), 
+   370 ;; Return value:  Size  Location     Type
+   371 ;;                  2   18[COMRAM] PTR unsigned char 
+   372 ;; Registers used:
+   373 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0
+   374 ;; Tracked objects:
+   375 ;;		On entry : 0/0
+   376 ;;		On exit  : 0/0
+   377 ;;		Unchanged: 0/0
+   378 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   379 ;;      Params:         4       0       0       0       0       0       0
+   380 ;;      Locals:         4       0       0       0       0       0       0
+   381 ;;      Temps:          0       0       0       0       0       0       0
+   382 ;;      Totals:         8       0       0       0       0       0       0
+   383 ;;Total ram usage:        8 bytes
+   384 ;; Hardware stack levels used: 1
+   385 ;; Hardware stack levels required when called: 5
+   386 ;; This function calls:
+   387 ;;		Nothing
+   388 ;; This function is called by:
+   389 ;;		_main
+   390 ;; This function uses a non-reentrant model
+   391 ;;
+   392                           
+   393                           	psect	text1
+   394  000930                     __ptext1:
+   395                           	callstack 0
+   396  000930                     _strcpy:
+   397                           	callstack 25
+   398  000930  C03F  F041         	movff	strcpy@src,strcpy@s
+   399  000934  C040  F042         	movff	strcpy@src+1,strcpy@s+1
+   400  000938  C03D  F043         	movff	strcpy@dest,strcpy@d
+   401  00093C  C03E  F044         	movff	strcpy@dest+1,strcpy@d+1
+   402  000940                     l1110:
+   403  000940  C041  FFD9         	movff	strcpy@s,fsr2l
+   404  000944  C042  FFDA         	movff	strcpy@s+1,fsr2h
+   405  000948  4A41               	infsnz	strcpy@s^0,f,c
+   406  00094A  2A42               	incf	(strcpy@s+1)^0,f,c
+   407  00094C  C043  FFE1         	movff	strcpy@d,fsr1l
+   408  000950  C044  FFE2         	movff	strcpy@d+1,fsr1h
+   409  000954  4A43               	infsnz	strcpy@d^0,f,c
+   410  000956  2A44               	incf	(strcpy@d+1)^0,f,c
+   411  000958  CFDF FFE7          	movff	indf2,indf1
+   412  00095C  50E7               	movf	indf1,w,c
+   413  00095E  A4D8               	btfss	status,2,c
+   414  000960  EFB4  F004         	goto	u391
+   415  000964  EFB6  F004         	goto	u390
+   416  000968                     u391:
+   417  000968  EFA0  F004         	goto	l1110
+   418  00096C                     u390:
+   419  00096C  0012               	return		;funcret
+   420  00096E                     __end_of_strcpy:
+   421                           	callstack 0
+   422                           
+   423 ;; *************** function _VR_Initialize *****************
+   424 ;; Defined at:
+   425 ;;		line 30 in file "setting_hardaware/uart.c"
+   426 ;; Parameters:    Size  Location     Type
+   427 ;;		None
+   428 ;; Auto vars:     Size  Location     Type
+   429 ;;		None
+   430 ;; Return value:  Size  Location     Type
+   431 ;;                  1    wreg      void 
+   432 ;; Registers used:
+   433 ;;		wreg, status,2
+   434 ;; Tracked objects:
+   435 ;;		On entry : 0/0
+   436 ;;		On exit  : 0/0
+   437 ;;		Unchanged: 0/0
+   438 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   439 ;;      Params:         0       0       0       0       0       0       0
+   440 ;;      Locals:         0       0       0       0       0       0       0
+   441 ;;      Temps:          0       0       0       0       0       0       0
+   442 ;;      Totals:         0       0       0       0       0       0       0
+   443 ;;Total ram usage:        0 bytes
+   444 ;; Hardware stack levels used: 1
+   445 ;; Hardware stack levels required when called: 5
+   446 ;; This function calls:
+   447 ;;		Nothing
+   448 ;; This function is called by:
+   449 ;;		_main
+   450 ;; This function uses a non-reentrant model
+   451 ;;
+   452                           
+   453                           	psect	text2
+   454  00096E                     __ptext2:
+   455                           	callstack 0
+   456  00096E                     _VR_Initialize:
+   457                           	callstack 25
+   458  00096E                     
+   459                           ;setting_hardaware/uart.c: 32:     TRISAbits.RA0 = 1;
+   460  00096E  8092               	bsf	146,0,c	;volatile
+   461  000970                     
+   462                           ;setting_hardaware/uart.c: 33:     TRISD = 0;
+   463  000970  0E00               	movlw	0
+   464  000972  6E95               	movwf	149,c	;volatile
+   465                           
+   466                           ;setting_hardaware/uart.c: 34:     LATD = 0;
+   467  000974  0E00               	movlw	0
+   468  000976  6E8C               	movwf	140,c	;volatile
+   469                           
+   470                           ;setting_hardaware/uart.c: 36:     ADCON0bits.CHS = 0b0000;
+   471  000978  0EC3               	movlw	-61
+   472  00097A  16C2               	andwf	194,f,c	;volatile
+   473  00097C                     
+   474                           ;setting_hardaware/uart.c: 37:     ADCON0bits.ADON = 1;
+   475  00097C  80C2               	bsf	194,0,c	;volatile
+   476  00097E                     
+   477                           ;setting_hardaware/uart.c: 38:     ADCON1bits.VCFG0 = 0;
+   478  00097E  98C1               	bcf	193,4,c	;volatile
+   479  000980                     
+   480                           ;setting_hardaware/uart.c: 39:     ADCON1bits.VCFG1 = 0;
+   481  000980  9AC1               	bcf	193,5,c	;volatile
+   482                           
+   483                           ;setting_hardaware/uart.c: 40:     ADCON1bits.PCFG = 0b1110;
+   484  000982  50C1               	movf	193,w,c	;volatile
+   485  000984  0BF0               	andlw	-16
+   486  000986  090E               	iorlw	14
+   487  000988  6EC1               	movwf	193,c	;volatile
+   488                           
+   489                           ;setting_hardaware/uart.c: 41:     ADCON2bits.ADCS = 0b000;
+   490  00098A  0EF8               	movlw	-8
+   491  00098C  16C0               	andwf	192,f,c	;volatile
+   492                           
+   493                           ;setting_hardaware/uart.c: 42:     ADCON2bits.ACQT = 0b010;
+   494  00098E  50C0               	movf	192,w,c	;volatile
+   495  000990  0BC7               	andlw	-57
+   496  000992  0910               	iorlw	16
+   497  000994  6EC0               	movwf	192,c	;volatile
+   498  000996                     
+   499                           ;setting_hardaware/uart.c: 43:     ADCON2bits.ADFM = 1;
+   500  000996  8EC0               	bsf	192,7,c	;volatile
+   501  000998                     
+   502                           ;setting_hardaware/uart.c: 45:     PIE1bits.ADIE = 0;
+   503  000998  9C9D               	bcf	157,6,c	;volatile
+   504  00099A                     
+   505                           ;setting_hardaware/uart.c: 46:     PIR1bits.ADIF = 0;
+   506  00099A  9C9E               	bcf	158,6,c	;volatile
+   507  00099C                     
+   508                           ;setting_hardaware/uart.c: 47:     INTCONbits.PEIE = 0;
+   509  00099C  9CF2               	bcf	242,6,c	;volatile
+   510  00099E                     
+   511                           ;setting_hardaware/uart.c: 48:     INTCONbits.GIE = 0;
+   512  00099E  9EF2               	bcf	242,7,c	;volatile
+   513  0009A0                     
+   514                           ;setting_hardaware/uart.c: 50:     ADCON0bits.GO = 1;
+   515  0009A0  82C2               	bsf	194,1,c	;volatile
+   516  0009A2  0012               	return		;funcret
+   517  0009A4                     __end_of_VR_Initialize:
+   518                           	callstack 0
+   519                           
+   520 ;; *************** function _UART_Initialize *****************
+   521 ;; Defined at:
+   522 ;;		line 6 in file "setting_hardaware/uart.c"
+   523 ;; Parameters:    Size  Location     Type
+   524 ;;		None
+   525 ;; Auto vars:     Size  Location     Type
+   526 ;;		None
+   527 ;; Return value:  Size  Location     Type
+   528 ;;                  1    wreg      void 
+   529 ;; Registers used:
+   530 ;;		wreg, status,2
+   531 ;; Tracked objects:
+   532 ;;		On entry : 0/0
+   533 ;;		On exit  : 0/0
+   534 ;;		Unchanged: 0/0
+   535 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   536 ;;      Params:         0       0       0       0       0       0       0
+   537 ;;      Locals:         0       0       0       0       0       0       0
+   538 ;;      Temps:          0       0       0       0       0       0       0
+   539 ;;      Totals:         0       0       0       0       0       0       0
+   540 ;;Total ram usage:        0 bytes
+   541 ;; Hardware stack levels used: 1
+   542 ;; Hardware stack levels required when called: 5
+   543 ;; This function calls:
+   544 ;;		Nothing
+   545 ;; This function is called by:
+   546 ;;		_main
+   547 ;; This function uses a non-reentrant model
+   548 ;;
+   549                           
+   550                           	psect	text3
+   551  0009D4                     __ptext3:
+   552                           	callstack 0
+   553  0009D4                     _UART_Initialize:
+   554                           	callstack 25
+   555  0009D4                     
+   556                           ;setting_hardaware/uart.c: 8:     TRISCbits.TRISC6 = 1;
+   557  0009D4  8C94               	bsf	148,6,c	;volatile
+   558                           
+   559                           ;setting_hardaware/uart.c: 9:     TRISCbits.TRISC7 = 1;
+   560  0009D6  8E94               	bsf	148,7,c	;volatile
+   561                           
+   562                           ;setting_hardaware/uart.c: 10:     OSCCONbits.IRCF2 = 1;
+   563  0009D8  8CD3               	bsf	211,6,c	;volatile
+   564                           
+   565                           ;setting_hardaware/uart.c: 11:     OSCCONbits.IRCF1 = 0;
+   566  0009DA  9AD3               	bcf	211,5,c	;volatile
+   567                           
+   568                           ;setting_hardaware/uart.c: 12:     OSCCONbits.IRCF0 = 1;
+   569  0009DC  88D3               	bsf	211,4,c	;volatile
+   570                           
+   571                           ;setting_hardaware/uart.c: 14:     TXSTAbits.SYNC = 0;
+   572  0009DE  98AC               	bcf	172,4,c	;volatile
+   573                           
+   574                           ;setting_hardaware/uart.c: 15:     BAUDCONbits.BRG16 = 0;
+   575  0009E0  96B8               	bcf	184,3,c	;volatile
+   576                           
+   577                           ;setting_hardaware/uart.c: 16:     TXSTAbits.BRGH = 0;
+   578  0009E2  94AC               	bcf	172,2,c	;volatile
+   579  0009E4                     
+   580                           ;setting_hardaware/uart.c: 17:     SPBRG = 12;
+   581  0009E4  0E0C               	movlw	12
+   582  0009E6  6EAF               	movwf	175,c	;volatile
+   583  0009E8                     
+   584                           ;setting_hardaware/uart.c: 19:     RCSTAbits.SPEN = 1;
+   585  0009E8  8EAB               	bsf	171,7,c	;volatile
+   586  0009EA                     
+   587                           ;setting_hardaware/uart.c: 20:     PIR1bits.TXIF =0;
+   588  0009EA  989E               	bcf	158,4,c	;volatile
+   589  0009EC                     
+   590                           ;setting_hardaware/uart.c: 21:     PIR1bits.RCIF =0;
+   591  0009EC  9A9E               	bcf	158,5,c	;volatile
+   592  0009EE                     
+   593                           ;setting_hardaware/uart.c: 22:     TXSTAbits.TXEN = 1;
+   594  0009EE  8AAC               	bsf	172,5,c	;volatile
+   595  0009F0                     
+   596                           ;setting_hardaware/uart.c: 23:     RCSTAbits.CREN = 1;
+   597  0009F0  88AB               	bsf	171,4,c	;volatile
+   598  0009F2                     
+   599                           ;setting_hardaware/uart.c: 24:     PIE1bits.TXIE = 0;
+   600  0009F2  989D               	bcf	157,4,c	;volatile
+   601  0009F4                     
+   602                           ;setting_hardaware/uart.c: 25:     IPR1bits.TXIP = 0;
+   603  0009F4  989F               	bcf	159,4,c	;volatile
+   604  0009F6                     
+   605                           ;setting_hardaware/uart.c: 26:     PIE1bits.RCIE = 0;
+   606  0009F6  9A9D               	bcf	157,5,c	;volatile
+   607  0009F8                     
+   608                           ;setting_hardaware/uart.c: 27:     IPR1bits.RCIP = 0;
+   609  0009F8  9A9F               	bcf	159,5,c	;volatile
+   610  0009FA  0012               	return		;funcret
+   611  0009FC                     __end_of_UART_Initialize:
+   612                           	callstack 0
+   613                           
+   614 ;; *************** function _Mode3 *****************
+   615 ;; Defined at:
+   616 ;;		line 105 in file "advance.c"
+   617 ;; Parameters:    Size  Location     Type
+   618 ;;		None
+   619 ;; Auto vars:     Size  Location     Type
+   620 ;;		None
+   621 ;; Return value:  Size  Location     Type
+   622 ;;                  1    wreg      void 
+   623 ;; Registers used:
+   624 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+   625 ;; Tracked objects:
+   626 ;;		On entry : 0/0
+   627 ;;		On exit  : 0/0
+   628 ;;		Unchanged: 0/0
+   629 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   630 ;;      Params:         0       0       0       0       0       0       0
+   631 ;;      Locals:         0       0       0       0       0       0       0
+   632 ;;      Temps:          0       0       0       0       0       0       0
+   633 ;;      Totals:         0       0       0       0       0       0       0
+   634 ;;Total ram usage:        0 bytes
+   635 ;; Hardware stack levels used: 1
+   636 ;; Hardware stack levels required when called: 6
+   637 ;; This function calls:
+   638 ;;		_ClearBuffer
+   639 ;; This function is called by:
+   640 ;;		_main
+   641 ;; This function uses a non-reentrant model
+   642 ;;
+   643                           
+   644                           	psect	text4
+   645  0009FC                     __ptext4:
+   646                           	callstack 0
+   647  0009FC                     _Mode3:
+   648                           	callstack 24
+   649  0009FC                     
+   650                           ;advance.c: 106:     ClearBuffer();
+   651  0009FC  EC77  F004         	call	_ClearBuffer	;wreg free
+   652  000A00                     
+   653                           ;advance.c: 109:     TRISBbits.RB0 = 1;
+   654  000A00  8093               	bsf	147,0,c	;volatile
+   655  000A02                     
+   656                           ;advance.c: 110:     TRISBbits.RB1 = 1;
+   657  000A02  8293               	bsf	147,1,c	;volatile
+   658  000A04                     
+   659                           ;advance.c: 111:     TRISD = 0x0;
+   660  000A04  0E00               	movlw	0
+   661  000A06  6E95               	movwf	149,c	;volatile
+   662  000A08                     
+   663                           ;advance.c: 112:     LATD = 0x0;
+   664  000A08  0E00               	movlw	0
+   665  000A0A  6E8C               	movwf	140,c	;volatile
+   666  000A0C                     
+   667                           ;advance.c: 113:     INTCONbits.GIE = 1;
+   668  000A0C  8EF2               	bsf	242,7,c	;volatile
+   669  000A0E                     
+   670                           ;advance.c: 114:     RCONbits.IPEN=1;
+   671  000A0E  8ED0               	bsf	208,7,c	;volatile
+   672  000A10                     
+   673                           ;advance.c: 115:     INTCONbits.INT0IE=1;
+   674  000A10  88F2               	bsf	242,4,c	;volatile
+   675  000A12                     
+   676                           ;advance.c: 116:     INTCON3bits.INT1IE=1;
+   677  000A12  86F0               	bsf	240,3,c	;volatile
+   678  000A14                     
+   679                           ;advance.c: 117:     INTCON2bits.RBPU=1;
+   680  000A14  8EF1               	bsf	241,7,c	;volatile
+   681  000A16                     
+   682                           ;advance.c: 118:     INTCONbits.PEIE = 1;
+   683  000A16  8CF2               	bsf	242,6,c	;volatile
+   684  000A18                     l150:
+   685  000A18  EF0C  F005         	goto	l150
+   686  000A1C  0012               	return		;funcret
+   687  000A1E                     __end_of_Mode3:
+   688                           	callstack 0
+   689                           
+   690 ;; *************** function _ClearBuffer *****************
+   691 ;; Defined at:
+   692 ;;		line 107 in file "setting_hardaware/uart.c"
+   693 ;; Parameters:    Size  Location     Type
+   694 ;;		None
+   695 ;; Auto vars:     Size  Location     Type
+   696 ;;  i               2   12[COMRAM] int 
+   697 ;; Return value:  Size  Location     Type
+   698 ;;                  1    wreg      void 
+   699 ;; Registers used:
+   700 ;;		wreg, fsr2l, fsr2h, status,2, status,0
+   701 ;; Tracked objects:
+   702 ;;		On entry : 0/0
+   703 ;;		On exit  : 0/0
+   704 ;;		Unchanged: 0/0
+   705 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   706 ;;      Params:         0       0       0       0       0       0       0
+   707 ;;      Locals:         2       0       0       0       0       0       0
+   708 ;;      Temps:          0       0       0       0       0       0       0
+   709 ;;      Totals:         2       0       0       0       0       0       0
+   710 ;;Total ram usage:        2 bytes
+   711 ;; Hardware stack levels used: 1
+   712 ;; Hardware stack levels required when called: 5
+   713 ;; This function calls:
+   714 ;;		Nothing
+   715 ;; This function is called by:
+   716 ;;		_Mode3
+   717 ;;		_main
+   718 ;; This function uses a non-reentrant model
+   719 ;;
+   720                           
+   721                           	psect	text5
+   722  0008EE                     __ptext5:
+   723                           	callstack 0
+   724  0008EE                     _ClearBuffer:
+   725                           	callstack 24
+   726  0008EE                     
+   727                           ;setting_hardaware/uart.c: 109:     for(int i = 0 ; i < 20 ; i++)
+   728  0008EE  0E00               	movlw	0
+   729  0008F0  6E38               	movwf	(ClearBuffer@i+1)^0,c
+   730  0008F2  0E00               	movlw	0
+   731  0008F4  6E37               	movwf	ClearBuffer@i^0,c
+   732  0008F6                     l860:
+   733                           
+   734                           ;setting_hardaware/uart.c: 110:         buffer[i] = '\0';
+   735  0008F6  0E17               	movlw	low _buffer
+   736  0008F8  2437               	addwf	ClearBuffer@i^0,w,c
+   737  0008FA  6ED9               	movwf	fsr2l,c
+   738  0008FC  0E00               	movlw	high _buffer
+   739  0008FE  2038               	addwfc	(ClearBuffer@i+1)^0,w,c
+   740  000900  6EDA               	movwf	fsr2h,c
+   741  000902  0E00               	movlw	0
+   742  000904  6EDF               	movwf	indf2,c
+   743  000906  4A37               	infsnz	ClearBuffer@i^0,f,c
+   744  000908  2A38               	incf	(ClearBuffer@i+1)^0,f,c
+   745  00090A  BE38               	btfsc	(ClearBuffer@i+1)^0,7,c
+   746  00090C  EF91  F004         	goto	u51
+   747  000910  5038               	movf	(ClearBuffer@i+1)^0,w,c
+   748  000912  E109               	bnz	u50
+   749  000914  0E14               	movlw	20
+   750  000916  5C37               	subwf	ClearBuffer@i^0,w,c
+   751  000918  A0D8               	btfss	status,0,c
+   752  00091A  EF91  F004         	goto	u51
+   753  00091E  EF93  F004         	goto	u50
+   754  000922                     u51:
+   755  000922  EF7B  F004         	goto	l860
+   756  000926                     u50:
+   757  000926                     
+   758                           ;setting_hardaware/uart.c: 111:     lenStr = 0;
+   759  000926  0E00               	movlw	0
+   760  000928  6E02               	movwf	(_lenStr+1)^0,c
+   761  00092A  0E00               	movlw	0
+   762  00092C  6E01               	movwf	_lenStr^0,c
+   763  00092E  0012               	return		;funcret
+   764  000930                     __end_of_ClearBuffer:
+   765                           	callstack 0
+   766                           
+   767 ;; *************** function _GetString *****************
+   768 ;; Defined at:
+   769 ;;		line 75 in file "setting_hardaware/uart.c"
+   770 ;; Parameters:    Size  Location     Type
+   771 ;;		None
+   772 ;; Auto vars:     Size  Location     Type
+   773 ;;  c               1   17[COMRAM] unsigned char 
+   774 ;;  i               2   15[COMRAM] int 
+   775 ;; Return value:  Size  Location     Type
+   776 ;;                  2   13[COMRAM] PTR unsigned char 
+   777 ;; Registers used:
+   778 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+   779 ;; Tracked objects:
+   780 ;;		On entry : 0/0
+   781 ;;		On exit  : 0/0
+   782 ;;		Unchanged: 0/0
+   783 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   784 ;;      Params:         2       0       0       0       0       0       0
+   785 ;;      Locals:         3       0       0       0       0       0       0
+   786 ;;      Temps:          0       0       0       0       0       0       0
+   787 ;;      Totals:         5       0       0       0       0       0       0
+   788 ;;Total ram usage:        5 bytes
+   789 ;; Hardware stack levels used: 1
+   790 ;; Hardware stack levels required when called: 6
+   791 ;; This function calls:
+   792 ;;		_UART_Write
+   793 ;; This function is called by:
+   794 ;;		_main
+   795 ;; This function uses a non-reentrant model
+   796 ;;
+   797                           
+   798                           	psect	text6
+   799  000766                     __ptext6:
+   800                           	callstack 0
+   801  000766                     _GetString:
+   802                           	callstack 24
+   803  000766                     
+   804                           ;setting_hardaware/uart.c: 77:     for(int i = 0 ; i < 20 ; i++)
+   805  000766  0E00               	movlw	0
+   806  000768  6E3B               	movwf	(GetString@i+1)^0,c
+   807  00076A  0E00               	movlw	0
+   808  00076C  6E3A               	movwf	GetString@i^0,c
+   809  00076E                     l70:
+   810                           
+   811                           ;setting_hardaware/uart.c: 79:         while(!RCIF)
+   812  00076E  AA9E               	btfss	3998,5,c	;volatile
+   813  000770  EFBC  F003         	goto	u331
+   814  000774  EFBE  F003         	goto	u330
+   815  000778                     u331:
+   816  000778  EFB7  F003         	goto	l70
+   817  00077C                     u330:
+   818  00077C                     
+   819                           ;setting_hardaware/uart.c: 83:         RCIF = 0;
+   820  00077C  9A9E               	bcf	3998,5,c	;volatile
+   821                           
+   822                           ;setting_hardaware/uart.c: 84:         unsigned char c = RCREG;
+   823  00077E  CFAE F03C          	movff	4014,GetString@c	;volatile
+   824  000782                     
+   825                           ;setting_hardaware/uart.c: 85:         if(c == '\r' || c=='\n')
+   826  000782  0E0D               	movlw	13
+   827  000784  183C               	xorwf	GetString@c^0,w,c
+   828  000786  B4D8               	btfsc	status,2,c
+   829  000788  EFC8  F003         	goto	u341
+   830  00078C  EFCA  F003         	goto	u340
+   831  000790                     u341:
+   832  000790  EFD3  F003         	goto	l1078
+   833  000794                     u340:
+   834  000794  0E0A               	movlw	10
+   835  000796  183C               	xorwf	GetString@c^0,w,c
+   836  000798  A4D8               	btfss	status,2,c
+   837  00079A  EFD1  F003         	goto	u351
+   838  00079E  EFD3  F003         	goto	u350
+   839  0007A2                     u351:
+   840  0007A2  EFD8  F003         	goto	l1082
+   841  0007A6                     u350:
+   842  0007A6                     l1078:
+   843                           
+   844                           ;setting_hardaware/uart.c: 86:         {;setting_hardaware/uart.c: 87:             UART_
+      +                          Write('\r');
+   845  0007A6  0E0D               	movlw	13
+   846  0007A8  EC23  F004         	call	_UART_Write
+   847                           
+   848                           ;setting_hardaware/uart.c: 88:             break;
+   849  0007AC  EFF3  F003         	goto	l1090
+   850  0007B0                     l1082:
+   851                           
+   852                           ;setting_hardaware/uart.c: 91:         {;setting_hardaware/uart.c: 92:             buffe
+      +                          r[i] = c;
+   853  0007B0  0E17               	movlw	low _buffer
+   854  0007B2  243A               	addwf	GetString@i^0,w,c
+   855  0007B4  6ED9               	movwf	fsr2l,c
+   856  0007B6  0E00               	movlw	high _buffer
+   857  0007B8  203B               	addwfc	(GetString@i+1)^0,w,c
+   858  0007BA  6EDA               	movwf	fsr2h,c
+   859  0007BC  C03C  FFDF         	movff	GetString@c,indf2
+   860  0007C0                     
+   861                           ;setting_hardaware/uart.c: 93:             UART_Write(c);
+   862  0007C0  503C               	movf	GetString@c^0,w,c
+   863  0007C2  EC23  F004         	call	_UART_Write
+   864  0007C6                     
+   865                           ;setting_hardaware/uart.c: 95:     }
+   866  0007C6  4A3A               	infsnz	GetString@i^0,f,c
+   867  0007C8  2A3B               	incf	(GetString@i+1)^0,f,c
+   868  0007CA  BE3B               	btfsc	(GetString@i+1)^0,7,c
+   869  0007CC  EFF1  F003         	goto	u361
+   870  0007D0  503B               	movf	(GetString@i+1)^0,w,c
+   871  0007D2  E109               	bnz	u360
+   872  0007D4  0E14               	movlw	20
+   873  0007D6  5C3A               	subwf	GetString@i^0,w,c
+   874  0007D8  A0D8               	btfss	status,0,c
+   875  0007DA  EFF1  F003         	goto	u361
+   876  0007DE  EFF3  F003         	goto	u360
+   877  0007E2                     u361:
+   878  0007E2  EFB7  F003         	goto	l70
+   879  0007E6                     u360:
+   880  0007E6                     l1090:
+   881                           
+   882                           ;setting_hardaware/uart.c: 96:     return buffer;
+   883  0007E6  0E17               	movlw	low _buffer
+   884  0007E8  6E38               	movwf	?_GetString^0,c
+   885  0007EA  0E00               	movlw	high _buffer
+   886  0007EC  6E39               	movwf	(?_GetString+1)^0,c
+   887  0007EE  0012               	return		;funcret
+   888  0007F0                     __end_of_GetString:
+   889                           	callstack 0
+   890                           
+   891 ;; *************** function _UART_Write *****************
+   892 ;; Defined at:
+   893 ;;		line 54 in file "setting_hardaware/uart.c"
+   894 ;; Parameters:    Size  Location     Type
+   895 ;;  data            1    wreg     unsigned char 
+   896 ;; Auto vars:     Size  Location     Type
+   897 ;;  data            1   12[COMRAM] unsigned char 
+   898 ;; Return value:  Size  Location     Type
+   899 ;;                  1    wreg      void 
+   900 ;; Registers used:
+   901 ;;		wreg, status,2, status,0
+   902 ;; Tracked objects:
+   903 ;;		On entry : 0/0
+   904 ;;		On exit  : 0/0
+   905 ;;		Unchanged: 0/0
+   906 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   907 ;;      Params:         0       0       0       0       0       0       0
+   908 ;;      Locals:         1       0       0       0       0       0       0
+   909 ;;      Temps:          0       0       0       0       0       0       0
+   910 ;;      Totals:         1       0       0       0       0       0       0
+   911 ;;Total ram usage:        1 bytes
+   912 ;; Hardware stack levels used: 1
+   913 ;; Hardware stack levels required when called: 5
+   914 ;; This function calls:
+   915 ;;		Nothing
+   916 ;; This function is called by:
+   917 ;;		_GetString
+   918 ;; This function uses a non-reentrant model
+   919 ;;
+   920                           
+   921                           	psect	text7
+   922  000846                     __ptext7:
+   923                           	callstack 0
+   924  000846                     _UART_Write:
+   925                           	callstack 24
+   926                           
+   927                           ;incstack = 0
+   928                           ;UART_Write@data stored from wreg
+   929  000846  6E37               	movwf	UART_Write@data^0,c
+   930  000848                     l55:
+   931                           
+   932                           ;setting_hardaware/uart.c: 56:     while(!TXSTAbits.TRMT)
+   933  000848  A2AC               	btfss	172,1,c	;volatile
+   934  00084A  EF29  F004         	goto	u11
+   935  00084E  EF2B  F004         	goto	u10
+   936  000852                     u11:
+   937  000852  EF24  F004         	goto	l55
+   938  000856                     u10:
+   939  000856                     
+   940                           ;setting_hardaware/uart.c: 60:     if(data=='\r' || data=='\n')
+   941  000856  0E0D               	movlw	13
+   942  000858  1837               	xorwf	UART_Write@data^0,w,c
+   943  00085A  B4D8               	btfsc	status,2,c
+   944  00085C  EF32  F004         	goto	u21
+   945  000860  EF34  F004         	goto	u20
+   946  000864                     u21:
+   947  000864  EF3D  F004         	goto	l850
+   948  000868                     u20:
+   949  000868  0E0A               	movlw	10
+   950  00086A  1837               	xorwf	UART_Write@data^0,w,c
+   951  00086C  A4D8               	btfss	status,2,c
+   952  00086E  EF3B  F004         	goto	u31
+   953  000872  EF3D  F004         	goto	u30
+   954  000876                     u31:
+   955  000876  EF4A  F004         	goto	l58
+   956  00087A                     u30:
+   957  00087A                     l850:
+   958                           
+   959                           ;setting_hardaware/uart.c: 61:     {;setting_hardaware/uart.c: 62:         TXREG = '\r';
+   960  00087A  0E0D               	movlw	13
+   961  00087C  6EAD               	movwf	173,c	;volatile
+   962  00087E                     l61:
+   963                           
+   964                           ;setting_hardaware/uart.c: 63:         while(!TXSTAbits.TRMT)
+   965  00087E  A2AC               	btfss	172,1,c	;volatile
+   966  000880  EF44  F004         	goto	u41
+   967  000884  EF46  F004         	goto	u40
+   968  000888                     u41:
+   969  000888  EF3F  F004         	goto	l61
+   970  00088C                     u40:
+   971  00088C                     
+   972                           ;setting_hardaware/uart.c: 67:         TXREG = '\n';
+   973  00088C  0E0A               	movlw	10
+   974  00088E  6EAD               	movwf	173,c	;volatile
+   975                           
+   976                           ;setting_hardaware/uart.c: 68:     }
+   977  000890  EF4C  F004         	goto	l65
+   978  000894                     l58:
+   979                           
+   980                           ;setting_hardaware/uart.c: 70:     {;setting_hardaware/uart.c: 71:         TXREG = data;
+   981  000894  C037  FFAD         	movff	UART_Write@data,4013	;volatile
+   982  000898                     l65:
+   983  000898  0012               	return		;funcret
+   984  00089A                     __end_of_UART_Write:
+   985                           	callstack 0
+   986                           
+   987 ;; *************** function _Lo_ISR *****************
+   988 ;; Defined at:
+   989 ;;		line 130 in file "setting_hardaware/uart.c"
+   990 ;; Parameters:    Size  Location     Type
+   991 ;;		None
+   992 ;; Auto vars:     Size  Location     Type
+   993 ;;		None
+   994 ;; Return value:  Size  Location     Type
+   995 ;;                  1    wreg      void 
+   996 ;; Registers used:
+   997 ;;		cstack
+   998 ;; Tracked objects:
+   999 ;;		On entry : 0/0
+  1000 ;;		On exit  : 0/0
+  1001 ;;		Unchanged: 0/0
+  1002 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1003 ;;      Params:         0       0       0       0       0       0       0
+  1004 ;;      Locals:         0       0       0       0       0       0       0
+  1005 ;;      Temps:          1       0       0       0       0       0       0
+  1006 ;;      Totals:         1       0       0       0       0       0       0
+  1007 ;;Total ram usage:        1 bytes
+  1008 ;; Hardware stack levels used: 1
+  1009 ;; Hardware stack levels required when called: 4
+  1010 ;; This function calls:
+  1011 ;;		_MyusartRead
+  1012 ;; This function is called by:
+  1013 ;;		Interrupt level 1
+  1014 ;; This function uses a non-reentrant model
+  1015 ;;
+  1016                           
+  1017                           	psect	intcodelo
+  1018  000018                     __pintcodelo:
+  1019                           	callstack 0
+  1020  000018                     _Lo_ISR:
+  1021                           	callstack 24
+  1022                           
+  1023                           ;incstack = 0
+  1024  000018  8045               	bsf	int$flags,0,c	;set compiler interrupt flag (level 1)
+  1025  00001A  CFE0 F036          	movff	bsr,??_Lo_ISR
+  1026  00001E                     
+  1027                           ;setting_hardaware/uart.c: 132:     if(RCIF)
+  1028  00001E  AA9E               	btfss	3998,5,c	;volatile
+  1029  000020  EF14  F000         	goto	i1u18_21
+  1030  000024  EF16  F000         	goto	i1u18_20
+  1031  000028                     i1u18_21:
+  1032  000028  EF22  F000         	goto	i1l101
+  1033  00002C                     i1u18_20:
+  1034  00002C                     
+  1035                           ;setting_hardaware/uart.c: 133:     {;setting_hardaware/uart.c: 134:         if(RCSTAbit
+      +                          s.OERR)
+  1036  00002C  A2AB               	btfss	171,1,c	;volatile
+  1037  00002E  EF1B  F000         	goto	i1u19_21
+  1038  000032  EF1D  F000         	goto	i1u19_20
+  1039  000036                     i1u19_21:
+  1040  000036  EF20  F000         	goto	i1l998
+  1041  00003A                     i1u19_20:
+  1042  00003A                     
+  1043                           ;setting_hardaware/uart.c: 135:         {;setting_hardaware/uart.c: 136:             CRE
+      +                          N = 0;
+  1044  00003A  98AB               	bcf	4011,4,c	;volatile
+  1045                           
+  1046                           ;setting_hardaware/uart.c: 137:             __nop();
+  1047  00003C  F000               	nop	
+  1048                           
+  1049                           ;setting_hardaware/uart.c: 138:             CREN = 1;
+  1050  00003E  88AB               	bsf	4011,4,c	;volatile
+  1051  000040                     i1l998:
+  1052                           
+  1053                           ;setting_hardaware/uart.c: 140:         MyusartRead();
+  1054  000040  EC1E  F005         	call	_MyusartRead	;wreg free
+  1055  000044                     i1l101:
+  1056  000044  C036  FFE0         	movff	??_Lo_ISR,bsr
+  1057  000048  9045               	bcf	int$flags,0,c	;clear compiler interrupt flag (level 1)
+  1058  00004A  0010               	retfie	
+  1059  00004C                     __end_of_Lo_ISR:
+  1060                           	callstack 0
+  1061                           
+  1062 ;; *************** function _MyusartRead *****************
+  1063 ;; Defined at:
+  1064 ;;		line 114 in file "setting_hardaware/uart.c"
+  1065 ;; Parameters:    Size  Location     Type
+  1066 ;;		None
+  1067 ;; Auto vars:     Size  Location     Type
+  1068 ;;		None
+  1069 ;; Return value:  Size  Location     Type
+  1070 ;;                  1    wreg      void 
+  1071 ;; Registers used:
+  1072 ;;		None
+  1073 ;; Tracked objects:
+  1074 ;;		On entry : 0/0
+  1075 ;;		On exit  : 0/0
+  1076 ;;		Unchanged: 0/0
+  1077 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1078 ;;      Params:         0       0       0       0       0       0       0
+  1079 ;;      Locals:         0       0       0       0       0       0       0
+  1080 ;;      Temps:          0       0       0       0       0       0       0
+  1081 ;;      Totals:         0       0       0       0       0       0       0
+  1082 ;;Total ram usage:        0 bytes
+  1083 ;; Hardware stack levels used: 1
+  1084 ;; Hardware stack levels required when called: 3
+  1085 ;; This function calls:
+  1086 ;;		Nothing
+  1087 ;; This function is called by:
+  1088 ;;		_Lo_ISR
+  1089 ;; This function uses a non-reentrant model
+  1090 ;;
+  1091                           
+  1092                           	psect	text9
+  1093  000A3C                     __ptext9:
+  1094                           	callstack 0
+  1095  000A3C                     _MyusartRead:
+  1096                           	callstack 24
+  1097  000A3C                     i1l91:
+  1098                           
+  1099                           ;setting_hardaware/uart.c: 116:     while(!RCIF)
+  1100  000A3C  AA9E               	btfss	3998,5,c	;volatile
+  1101  000A3E  EF23  F005         	goto	i1u15_21
+  1102  000A42  EF25  F005         	goto	i1u15_20
+  1103  000A46                     i1u15_21:
+  1104  000A46  EF1E  F005         	goto	i1l91
+  1105  000A4A                     i1u15_20:
+  1106  000A4A                     
+  1107                           ;setting_hardaware/uart.c: 120:     RCIF = 0;
+  1108  000A4A  9A9E               	bcf	3998,5,c	;volatile
+  1109  000A4C  0012               	return		;funcret
+  1110  000A4E                     __end_of_MyusartRead:
+  1111                           	callstack 0
+  1112                           
+  1113 ;; *************** function _HI_ISR *****************
+  1114 ;; Defined at:
+  1115 ;;		line 54 in file "advance.c"
+  1116 ;; Parameters:    Size  Location     Type
+  1117 ;;		None
+  1118 ;; Auto vars:     Size  Location     Type
+  1119 ;;		None
+  1120 ;; Return value:  Size  Location     Type
+  1121 ;;                  1    wreg      void 
+  1122 ;; Registers used:
+  1123 ;;		wreg, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+  1124 ;; Tracked objects:
+  1125 ;;		On entry : 0/0
+  1126 ;;		On exit  : 0/0
+  1127 ;;		Unchanged: 0/0
+  1128 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1129 ;;      Params:         0       0       0       0       0       0       0
+  1130 ;;      Locals:         0       0       0       0       0       0       0
+  1131 ;;      Temps:          4       0       0       0       0       0       0
+  1132 ;;      Totals:         4       0       0       0       0       0       0
+  1133 ;;Total ram usage:        4 bytes
+  1134 ;; Hardware stack levels used: 1
+  1135 ;; Hardware stack levels required when called: 2
+  1136 ;; This function calls:
+  1137 ;;		_UART_Write_Text
+  1138 ;;		_delay
+  1139 ;; This function is called by:
+  1140 ;;		Interrupt level 2
+  1141 ;; This function uses a non-reentrant model
+  1142 ;;
+  1143                           
+  1144                           	psect	intcode
+  1145  000008                     __pintcode:
+  1146                           	callstack 0
+  1147  000008                     _HI_ISR:
+  1148                           	callstack 24
+  1149                           
+  1150                           ;incstack = 0
+  1151  000008  8245               	bsf	int$flags,1,c	;set compiler interrupt flag (level 2)
+  1152  00000A  ED09  F003         	call	int_func,f	;refresh shadow registers
+  1153                           
+  1154                           	psect	intcode_body
+  1155  000612                     __pintcode_body:
+  1156                           	callstack 24
+  1157  000612                     int_func:
+  1158                           	callstack 24
+  1159  000612  0006               	pop		; remove dummy address from shadow register refresh
+  1160  000614  CFF6 F032          	movff	tblptrl,??_HI_ISR
+  1161  000618  CFF7 F033          	movff	tblptrh,??_HI_ISR+1
+  1162  00061C  CFF8 F034          	movff	tblptru,??_HI_ISR+2
+  1163  000620  CFF5 F035          	movff	tablat,??_HI_ISR+3
+  1164  000624                     
+  1165                           ;advance.c: 67:     if(INTCONbits.INT0IF==1)
+  1166  000624  A2F2               	btfss	242,1,c	;volatile
+  1167  000626  EF17  F003         	goto	i2u40_41
+  1168  00062A  EF19  F003         	goto	i2u40_40
+  1169  00062E                     i2u40_41:
+  1170  00062E  EF38  F003         	goto	i2l140
+  1171  000632                     i2u40_40:
+  1172  000632                     
+  1173                           ;advance.c: 68:     {;advance.c: 69:          if(LATD==0b00000001)
+  1174  000632  048C               	decf	140,w,c	;volatile
+  1175  000634  A4D8               	btfss	status,2,c
+  1176  000636  EF1F  F003         	goto	i2u41_41
+  1177  00063A  EF21  F003         	goto	i2u41_40
+  1178  00063E                     i2u41_41:
+  1179  00063E  EF25  F003         	goto	i2l1118
+  1180  000642                     i2u41_40:
+  1181  000642                     
+  1182                           ;advance.c: 70:          {;advance.c: 71:             LATD=0b00000000;
+  1183  000642  0E00               	movlw	0
+  1184  000644  6E8C               	movwf	140,c	;volatile
+  1185                           
+  1186                           ;advance.c: 72:          }else
+  1187  000646  EF27  F003         	goto	i2l1120
+  1188  00064A                     i2l1118:
+  1189                           
+  1190                           ;advance.c: 73:         {;advance.c: 74:             LATD=0b00000001;
+  1191  00064A  0E01               	movlw	1
+  1192  00064C  6E8C               	movwf	140,c	;volatile
+  1193  00064E                     i2l1120:
+  1194                           
+  1195                           ;advance.c: 77:         INTCONbits.INT0IE=0;
+  1196  00064E  98F2               	bcf	242,4,c	;volatile
+  1197  000650                     
+  1198                           ;advance.c: 78:         UART_Write_Text("Go!\n");
+  1199  000650  0E08               	movlw	low STR_1
+  1200  000652  6E2C               	movwf	UART_Write_Text@text^0,c
+  1201  000654  0E06               	movlw	high STR_1
+  1202  000656  6E2D               	movwf	(UART_Write_Text@text+1)^0,c
+  1203  000658  ECF8  F003         	call	_UART_Write_Text	;wreg free
+  1204  00065C                     
+  1205                           ;advance.c: 79:         UART_Write_Text("pause\n");
+  1206  00065C  0E01               	movlw	low STR_2
+  1207  00065E  6E2C               	movwf	UART_Write_Text@text^0,c
+  1208  000660  0E06               	movlw	high STR_2
+  1209  000662  6E2D               	movwf	(UART_Write_Text@text+1)^0,c
+  1210  000664  ECF8  F003         	call	_UART_Write_Text	;wreg free
+  1211  000668                     
+  1212                           ;advance.c: 80:         INTCONbits.INT0IF=0;
+  1213  000668  92F2               	bcf	242,1,c	;volatile
+  1214  00066A                     
+  1215                           ;advance.c: 81:         INTCONbits.INT0IE=1;
+  1216  00066A  88F2               	bsf	242,4,c	;volatile
+  1217                           
+  1218                           ;advance.c: 85:     }else if(INTCON3bits.INT1IF==1)
+  1219  00066C  EF5C  F003         	goto	i2l1146
+  1220  000670                     i2l140:
+  1221  000670  A0F0               	btfss	240,0,c	;volatile
+  1222  000672  EF3D  F003         	goto	i2u42_41
+  1223  000676  EF3F  F003         	goto	i2u42_40
+  1224  00067A                     i2u42_41:
+  1225  00067A  EF5C  F003         	goto	i2l1146
+  1226  00067E                     i2u42_40:
+  1227  00067E                     
+  1228                           ;advance.c: 86:     {;advance.c: 87:          if(LATD==0b00000001)
+  1229  00067E  048C               	decf	140,w,c	;volatile
+  1230  000680  A4D8               	btfss	status,2,c
+  1231  000682  EF45  F003         	goto	i2u43_41
+  1232  000686  EF47  F003         	goto	i2u43_40
+  1233  00068A                     i2u43_41:
+  1234  00068A  EF4B  F003         	goto	i2l1134
+  1235  00068E                     i2u43_40:
+  1236  00068E                     
+  1237                           ;advance.c: 88:          {;advance.c: 89:             LATD=0b00000000;
+  1238  00068E  0E00               	movlw	0
+  1239  000690  6E8C               	movwf	140,c	;volatile
+  1240                           
+  1241                           ;advance.c: 90:          }else
+  1242  000692  EF4D  F003         	goto	i2l1136
+  1243  000696                     i2l1134:
+  1244                           
+  1245                           ;advance.c: 91:         {;advance.c: 92:             LATD=0b00000001;
+  1246  000696  0E01               	movlw	1
+  1247  000698  6E8C               	movwf	140,c	;volatile
+  1248  00069A                     i2l1136:
+  1249                           
+  1250                           ;advance.c: 94:         INTCON3bits.INT1IE=0;
+  1251  00069A  96F0               	bcf	240,3,c	;volatile
+  1252  00069C                     
+  1253                           ;advance.c: 95:         UART_Write_Text("R\n");
+  1254  00069C  0E0D               	movlw	low STR_3
+  1255  00069E  6E2C               	movwf	UART_Write_Text@text^0,c
+  1256  0006A0  0E06               	movlw	high STR_3
+  1257  0006A2  6E2D               	movwf	(UART_Write_Text@text+1)^0,c
+  1258  0006A4  ECF8  F003         	call	_UART_Write_Text	;wreg free
+  1259  0006A8                     
+  1260                           ;advance.c: 96:         UART_Write_Text("pause\n");
+  1261  0006A8  0E01               	movlw	low STR_2
+  1262  0006AA  6E2C               	movwf	UART_Write_Text@text^0,c
+  1263  0006AC  0E06               	movlw	high STR_2
+  1264  0006AE  6E2D               	movwf	(UART_Write_Text@text+1)^0,c
+  1265  0006B0  ECF8  F003         	call	_UART_Write_Text	;wreg free
+  1266  0006B4                     
+  1267                           ;advance.c: 97:         INTCON3bits.INT1IF=0;
+  1268  0006B4  90F0               	bcf	240,0,c	;volatile
+  1269  0006B6                     
+  1270                           ;advance.c: 98:         INTCON3bits.INT1IE=1;
+  1271  0006B6  86F0               	bsf	240,3,c	;volatile
+  1272  0006B8                     i2l1146:
+  1273                           
+  1274                           ;advance.c: 100:     delay(10000);
+  1275  0006B8  0E27               	movlw	39
+  1276  0006BA  6E2C               	movwf	(delay@num+1)^0,c
+  1277  0006BC  0E10               	movlw	16
+  1278  0006BE  6E2B               	movwf	delay@num^0,c
+  1279  0006C0  ECD2  F004         	call	_delay	;wreg free
+  1280  0006C4  C035  FFF5         	movff	??_HI_ISR+3,tablat
+  1281  0006C8  C034  FFF8         	movff	??_HI_ISR+2,tblptru
+  1282  0006CC  C033  FFF7         	movff	??_HI_ISR+1,tblptrh
+  1283  0006D0  C032  FFF6         	movff	??_HI_ISR,tblptrl
+  1284  0006D4  9245               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+  1285  0006D6  0011               	retfie		f
+  1286  0006D8                     __end_of_HI_ISR:
+  1287                           	callstack 0
+  1288                           
+  1289 ;; *************** function _delay *****************
+  1290 ;; Defined at:
+  1291 ;;		line 45 in file "advance.c"
+  1292 ;; Parameters:    Size  Location     Type
+  1293 ;;  num             2    0[COMRAM] int 
+  1294 ;; Auto vars:     Size  Location     Type
+  1295 ;;  i               2    3[COMRAM] int 
+  1296 ;; Return value:  Size  Location     Type
+  1297 ;;                  1    wreg      void 
+  1298 ;; Registers used:
+  1299 ;;		wreg, status,2, status,0
+  1300 ;; Tracked objects:
+  1301 ;;		On entry : 0/0
+  1302 ;;		On exit  : 0/0
+  1303 ;;		Unchanged: 0/0
+  1304 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1305 ;;      Params:         2       0       0       0       0       0       0
+  1306 ;;      Locals:         2       0       0       0       0       0       0
+  1307 ;;      Temps:          1       0       0       0       0       0       0
+  1308 ;;      Totals:         5       0       0       0       0       0       0
+  1309 ;;Total ram usage:        5 bytes
+  1310 ;; Hardware stack levels used: 1
+  1311 ;; This function calls:
+  1312 ;;		Nothing
+  1313 ;; This function is called by:
+  1314 ;;		_HI_ISR
+  1315 ;; This function uses a non-reentrant model
+  1316 ;;
+  1317                           
+  1318                           	psect	text11
+  1319  0009A4                     __ptext11:
+  1320                           	callstack 0
+  1321  0009A4                     _delay:
+  1322                           	callstack 25
+  1323  0009A4                     
+  1324                           ;advance.c: 45: void delay(int num);advance.c: 46: {;advance.c: 47:     int i = 0;
+  1325  0009A4  0E00               	movlw	0
+  1326  0009A6  6E2F               	movwf	(delay@i+1)^0,c
+  1327  0009A8  0E00               	movlw	0
+  1328  0009AA  6E2E               	movwf	delay@i^0,c
+  1329                           
+  1330                           ;advance.c: 48:     while(i<num)
+  1331  0009AC  EFDA  F004         	goto	i2l1106
+  1332  0009B0                     i2l1104:
+  1333                           
+  1334                           ;advance.c: 49:         i++;
+  1335  0009B0  4A2E               	infsnz	delay@i^0,f,c
+  1336  0009B2  2A2F               	incf	(delay@i+1)^0,f,c
+  1337  0009B4                     i2l1106:
+  1338                           
+  1339                           ;advance.c: 48:     while(i<num)
+  1340  0009B4  502B               	movf	delay@num^0,w,c
+  1341  0009B6  5C2E               	subwf	delay@i^0,w,c
+  1342  0009B8  502F               	movf	(delay@i+1)^0,w,c
+  1343  0009BA  0A80               	xorlw	128
+  1344  0009BC  6E2D               	movwf	??_delay^0,c
+  1345  0009BE  502C               	movf	(delay@num+1)^0,w,c
+  1346  0009C0  0A80               	xorlw	128
+  1347  0009C2  582D               	subwfb	??_delay^0,w,c
+  1348  0009C4  A0D8               	btfss	status,0,c
+  1349  0009C6  EFE7  F004         	goto	i2u38_41
+  1350  0009CA  EFE9  F004         	goto	i2u38_40
+  1351  0009CE                     i2u38_41:
+  1352  0009CE  EFD8  F004         	goto	i2l1104
+  1353  0009D2                     i2u38_40:
+  1354  0009D2  0012               	return		;funcret
+  1355  0009D4                     __end_of_delay:
+  1356                           	callstack 0
+  1357                           
+  1358 ;; *************** function _UART_Write_Text *****************
+  1359 ;; Defined at:
+  1360 ;;		line 99 in file "setting_hardaware/uart.c"
+  1361 ;; Parameters:    Size  Location     Type
+  1362 ;;  text            2    1[COMRAM] PTR unsigned char 
+  1363 ;;		 -> STR_4(7), STR_3(3), STR_2(7), STR_1(5), 
+  1364 ;; Auto vars:     Size  Location     Type
+  1365 ;;  i               2    5[COMRAM] int 
+  1366 ;; Return value:  Size  Location     Type
+  1367 ;;                  1    wreg      void 
+  1368 ;; Registers used:
+  1369 ;;		wreg, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+  1370 ;; Tracked objects:
+  1371 ;;		On entry : 0/0
+  1372 ;;		On exit  : 0/0
+  1373 ;;		Unchanged: 0/0
+  1374 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1375 ;;      Params:         2       0       0       0       0       0       0
+  1376 ;;      Locals:         2       0       0       0       0       0       0
+  1377 ;;      Temps:          2       0       0       0       0       0       0
+  1378 ;;      Totals:         6       0       0       0       0       0       0
+  1379 ;;Total ram usage:        6 bytes
+  1380 ;; Hardware stack levels used: 1
+  1381 ;; Hardware stack levels required when called: 1
+  1382 ;; This function calls:
+  1383 ;;		i2_UART_Write
+  1384 ;; This function is called by:
+  1385 ;;		_HI_ISR
+  1386 ;; This function uses a non-reentrant model
+  1387 ;;
+  1388                           
+  1389                           	psect	text12
+  1390  0007F0                     __ptext12:
+  1391                           	callstack 0
+  1392  0007F0                     _UART_Write_Text:
+  1393                           	callstack 24
+  1394  0007F0                     
+  1395                           ;setting_hardaware/uart.c: 99: void UART_Write_Text(char* text);setting_hardaware/uart.c
+      +                          : 100: {;setting_hardaware/uart.c: 101:     for(int i = 0 ; text[i] != '\0' ; i++)
+  1396  0007F0  0E00               	movlw	0
+  1397  0007F2  6E31               	movwf	(UART_Write_Text@i+1)^0,c
+  1398  0007F4  0E00               	movlw	0
+  1399  0007F6  6E30               	movwf	UART_Write_Text@i^0,c
+  1400  0007F8  EF0E  F004         	goto	i2l1100
+  1401  0007FC                     i2l1096:
+  1402                           
+  1403                           ;setting_hardaware/uart.c: 102:     {;setting_hardaware/uart.c: 103:         UART_Write(
+      +                          text[i]);
+  1404  0007FC  5030               	movf	UART_Write_Text@i^0,w,c
+  1405  0007FE  242C               	addwf	UART_Write_Text@text^0,w,c
+  1406  000800  6E2E               	movwf	??_UART_Write_Text^0,c
+  1407  000802  5031               	movf	(UART_Write_Text@i+1)^0,w,c
+  1408  000804  202D               	addwfc	(UART_Write_Text@text+1)^0,w,c
+  1409  000806  6E2F               	movwf	(??_UART_Write_Text+1)^0,c
+  1410  000808  C02E  FFF6         	movff	??_UART_Write_Text,tblptrl
+  1411  00080C  C02F  FFF7         	movff	??_UART_Write_Text+1,tblptrh
+  1412  000810                     	if	0	;tblptru may be non-zero
+  1413  000810                     	endif
+  1414  000810                     	if	0	;tblptru may be non-zero
+  1415  000810                     	endif
+  1416  000810  0008               	tblrd		*
+  1417  000812  50F5               	movf	tablat,w,c
+  1418  000814  EC4D  F004         	call	i2_UART_Write
+  1419  000818                     
+  1420                           ;setting_hardaware/uart.c: 104:     }
+  1421  000818  4A30               	infsnz	UART_Write_Text@i^0,f,c
+  1422  00081A  2A31               	incf	(UART_Write_Text@i+1)^0,f,c
+  1423  00081C                     i2l1100:
+  1424  00081C  5030               	movf	UART_Write_Text@i^0,w,c
+  1425  00081E  242C               	addwf	UART_Write_Text@text^0,w,c
+  1426  000820  6E2E               	movwf	??_UART_Write_Text^0,c
+  1427  000822  5031               	movf	(UART_Write_Text@i+1)^0,w,c
+  1428  000824  202D               	addwfc	(UART_Write_Text@text+1)^0,w,c
+  1429  000826  6E2F               	movwf	(??_UART_Write_Text+1)^0,c
+  1430  000828  C02E  FFF6         	movff	??_UART_Write_Text,tblptrl
+  1431  00082C  C02F  FFF7         	movff	??_UART_Write_Text+1,tblptrh
+  1432  000830                     	if	0	;tblptru may be non-zero
+  1433  000830                     	endif
+  1434  000830                     	if	0	;tblptru may be non-zero
+  1435  000830                     	endif
+  1436  000830  0008               	tblrd		*
+  1437  000832  50F5               	movf	tablat,w,c
+  1438  000834  0900               	iorlw	0
+  1439  000836  A4D8               	btfss	status,2,c
+  1440  000838  EF20  F004         	goto	i2u37_41
+  1441  00083C  EF22  F004         	goto	i2u37_40
+  1442  000840                     i2u37_41:
+  1443  000840  EFFE  F003         	goto	i2l1096
+  1444  000844                     i2u37_40:
+  1445  000844  0012               	return		;funcret
+  1446  000846                     __end_of_UART_Write_Text:
+  1447                           	callstack 0
+  1448                           
+  1449 ;; *************** function i2_UART_Write *****************
+  1450 ;; Defined at:
+  1451 ;;		line 54 in file "setting_hardaware/uart.c"
+  1452 ;; Parameters:    Size  Location     Type
+  1453 ;;  data            1    wreg     unsigned char 
+  1454 ;; Auto vars:     Size  Location     Type
+  1455 ;;  data            1    0[COMRAM] unsigned char 
+  1456 ;; Return value:  Size  Location     Type
+  1457 ;;                  1    wreg      void 
+  1458 ;; Registers used:
+  1459 ;;		wreg, status,2, status,0
+  1460 ;; Tracked objects:
+  1461 ;;		On entry : 0/0
+  1462 ;;		On exit  : 0/0
+  1463 ;;		Unchanged: 0/0
+  1464 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1465 ;;      Params:         0       0       0       0       0       0       0
+  1466 ;;      Locals:         1       0       0       0       0       0       0
+  1467 ;;      Temps:          0       0       0       0       0       0       0
+  1468 ;;      Totals:         1       0       0       0       0       0       0
+  1469 ;;Total ram usage:        1 bytes
+  1470 ;; Hardware stack levels used: 1
+  1471 ;; This function calls:
+  1472 ;;		Nothing
+  1473 ;; This function is called by:
+  1474 ;;		_UART_Write_Text
+  1475 ;; This function uses a non-reentrant model
+  1476 ;;
+  1477                           
+  1478                           	psect	text13
+  1479  00089A                     __ptext13:
+  1480                           	callstack 0
+  1481  00089A                     i2_UART_Write:
+  1482                           	callstack 24
+  1483                           
+  1484                           ;incstack = 0
+  1485                           ;i2UART_Write@data stored from wreg
+  1486  00089A  6E2B               	movwf	i2UART_Write@data^0,c
+  1487  00089C                     i2l55:
+  1488                           
+  1489                           ;setting_hardaware/uart.c: 56:     while(!TXSTAbits.TRMT)
+  1490  00089C  A2AC               	btfss	172,1,c	;volatile
+  1491  00089E  EF53  F004         	goto	i2u29_41
+  1492  0008A2  EF55  F004         	goto	i2u29_40
+  1493  0008A6                     i2u29_41:
+  1494  0008A6  EF4E  F004         	goto	i2l55
+  1495  0008AA                     i2u29_40:
+  1496  0008AA                     
+  1497                           ;setting_hardaware/uart.c: 60:     if(data=='\r' || data=='\n')
+  1498  0008AA  0E0D               	movlw	13
+  1499  0008AC  182B               	xorwf	i2UART_Write@data^0,w,c
+  1500  0008AE  B4D8               	btfsc	status,2,c
+  1501  0008B0  EF5C  F004         	goto	i2u30_41
+  1502  0008B4  EF5E  F004         	goto	i2u30_40
+  1503  0008B8                     i2u30_41:
+  1504  0008B8  EF67  F004         	goto	i2l1064
+  1505  0008BC                     i2u30_40:
+  1506  0008BC  0E0A               	movlw	10
+  1507  0008BE  182B               	xorwf	i2UART_Write@data^0,w,c
+  1508  0008C0  A4D8               	btfss	status,2,c
+  1509  0008C2  EF65  F004         	goto	i2u31_41
+  1510  0008C6  EF67  F004         	goto	i2u31_40
+  1511  0008CA                     i2u31_41:
+  1512  0008CA  EF74  F004         	goto	i2l58
+  1513  0008CE                     i2u31_40:
+  1514  0008CE                     i2l1064:
+  1515                           
+  1516                           ;setting_hardaware/uart.c: 61:     {;setting_hardaware/uart.c: 62:         TXREG = '\r';
+  1517  0008CE  0E0D               	movlw	13
+  1518  0008D0  6EAD               	movwf	173,c	;volatile
+  1519  0008D2                     i2l61:
+  1520                           
+  1521                           ;setting_hardaware/uart.c: 63:         while(!TXSTAbits.TRMT)
+  1522  0008D2  A2AC               	btfss	172,1,c	;volatile
+  1523  0008D4  EF6E  F004         	goto	i2u32_41
+  1524  0008D8  EF70  F004         	goto	i2u32_40
+  1525  0008DC                     i2u32_41:
+  1526  0008DC  EF69  F004         	goto	i2l61
+  1527  0008E0                     i2u32_40:
+  1528  0008E0                     
+  1529                           ;setting_hardaware/uart.c: 67:         TXREG = '\n';
+  1530  0008E0  0E0A               	movlw	10
+  1531  0008E2  6EAD               	movwf	173,c	;volatile
+  1532                           
+  1533                           ;setting_hardaware/uart.c: 68:     }
+  1534  0008E4  EF76  F004         	goto	i2l65
+  1535  0008E8                     i2l58:
+  1536                           
+  1537                           ;setting_hardaware/uart.c: 70:     {;setting_hardaware/uart.c: 71:         TXREG = data;
+  1538  0008E8  C02B  FFAD         	movff	i2UART_Write@data,4013	;volatile
+  1539  0008EC                     i2l65:
+  1540  0008EC  0012               	return		;funcret
+  1541  0008EE                     __end_ofi2_UART_Write:
+  1542                           	callstack 0
+  1543                           
+  1544                           	psect	rparam
+  1545  0000                     
+  1546                           	psect	temp
+  1547  000045                     btemp:
+  1548                           	callstack 0
+  1549  000045                     	ds	1
+  1550  0000                     int$flags	set	btemp
+  1551  0000                     wtemp8	set	btemp+1
+  1552  0000                     ttemp5	set	btemp+1
+  1553  0000                     ttemp6	set	btemp+4
+  1554  0000                     ttemp7	set	btemp+8
+  1555                           
+  1556                           	psect	idloc
+  1557                           
+  1558                           ;Config register IDLOC0 @ 0x200000
+  1559                           ;	unspecified, using default values
+  1560  200000                     	org	2097152
+  1561  200000  FF                 	db	255
+  1562                           
+  1563                           ;Config register IDLOC1 @ 0x200001
+  1564                           ;	unspecified, using default values
+  1565  200001                     	org	2097153
+  1566  200001  FF                 	db	255
+  1567                           
+  1568                           ;Config register IDLOC2 @ 0x200002
+  1569                           ;	unspecified, using default values
+  1570  200002                     	org	2097154
+  1571  200002  FF                 	db	255
+  1572                           
+  1573                           ;Config register IDLOC3 @ 0x200003
+  1574                           ;	unspecified, using default values
+  1575  200003                     	org	2097155
+  1576  200003  FF                 	db	255
+  1577                           
+  1578                           ;Config register IDLOC4 @ 0x200004
+  1579                           ;	unspecified, using default values
+  1580  200004                     	org	2097156
+  1581  200004  FF                 	db	255
+  1582                           
+  1583                           ;Config register IDLOC5 @ 0x200005
+  1584                           ;	unspecified, using default values
+  1585  200005                     	org	2097157
+  1586  200005  FF                 	db	255
+  1587                           
+  1588                           ;Config register IDLOC6 @ 0x200006
+  1589                           ;	unspecified, using default values
+  1590  200006                     	org	2097158
+  1591  200006  FF                 	db	255
+  1592                           
+  1593                           ;Config register IDLOC7 @ 0x200007
+  1594                           ;	unspecified, using default values
+  1595  200007                     	org	2097159
+  1596  200007  FF                 	db	255
+  1597                           
+  1598                           	psect	config
+  1599                           
+  1600                           ; Padding undefined space
+  1601  300000                     	org	3145728
+  1602  300000  FF                 	db	255
+  1603                           
+  1604                           ;Config register CONFIG1H @ 0x300001
+  1605                           ;	Oscillator Selection bits
+  1606                           ;	OSC = INTIO67, Internal oscillator block, port function on RA6 and RA7
+  1607                           ;	Fail-Safe Clock Monitor Enable bit
+  1608                           ;	FCMEN = OFF, Fail-Safe Clock Monitor disabled
+  1609                           ;	Internal/External Oscillator Switchover bit
+  1610                           ;	IESO = ON, Oscillator Switchover mode enabled
+  1611  300001                     	org	3145729
+  1612  300001  88                 	db	136
+  1613                           
+  1614                           ;Config register CONFIG2L @ 0x300002
+  1615                           ;	Power-up Timer Enable bit
+  1616                           ;	PWRT = OFF, PWRT disabled
+  1617                           ;	Brown-out Reset Enable bits
+  1618                           ;	BOREN = SBORDIS, Brown-out Reset enabled in hardware only (SBOREN is disabled)
+  1619                           ;	Brown Out Reset Voltage bits
+  1620                           ;	BORV = 3, Minimum setting
+  1621  300002                     	org	3145730
+  1622  300002  1F                 	db	31
+  1623                           
+  1624                           ;Config register CONFIG2H @ 0x300003
+  1625                           ;	Watchdog Timer Enable bit
+  1626                           ;	WDT = OFF, WDT disabled (control is placed on the SWDTEN bit)
+  1627                           ;	Watchdog Timer Postscale Select bits
+  1628                           ;	WDTPS = 1, 1:1
+  1629  300003                     	org	3145731
+  1630  300003  00                 	db	0
+  1631                           
+  1632                           ; Padding undefined space
+  1633  300004                     	org	3145732
+  1634  300004  FF                 	db	255
+  1635                           
+  1636                           ;Config register CONFIG3H @ 0x300005
+  1637                           ;	CCP2 MUX bit
+  1638                           ;	CCP2MX = PORTC, CCP2 input/output is multiplexed with RC1
+  1639                           ;	PORTB A/D Enable bit
+  1640                           ;	PBADEN = ON, PORTB<4:0> pins are configured as analog input channels on Reset
+  1641                           ;	Low-Power Timer1 Oscillator Enable bit
+  1642                           ;	LPT1OSC = OFF, Timer1 configured for higher power operation
+  1643                           ;	MCLR Pin Enable bit
+  1644                           ;	MCLRE = ON, MCLR pin enabled; RE3 input pin disabled
+  1645  300005                     	org	3145733
+  1646  300005  83                 	db	131
+  1647                           
+  1648                           ;Config register CONFIG4L @ 0x300006
+  1649                           ;	Stack Full/Underflow Reset Enable bit
+  1650                           ;	STVREN = ON, Stack full/underflow will cause Reset
+  1651                           ;	Single-Supply ICSP Enable bit
+  1652                           ;	LVP = OFF, Single-Supply ICSP disabled
+  1653                           ;	Extended Instruction Set Enable bit
+  1654                           ;	XINST = OFF, Instruction set extension and Indexed Addressing mode disabled (Legacy mo
+      +                          de)
+  1655                           ;	Background Debugger Enable bit
+  1656                           ;	DEBUG = 0x1, unprogrammed default
+  1657  300006                     	org	3145734
+  1658  300006  81                 	db	129
+  1659                           
+  1660                           ; Padding undefined space
+  1661  300007                     	org	3145735
+  1662  300007  FF                 	db	255
+  1663                           
+  1664                           ;Config register CONFIG5L @ 0x300008
+  1665                           ;	Code Protection bit
+  1666                           ;	CP0 = OFF, Block 0 (000800-001FFFh) not code-protected
+  1667                           ;	Code Protection bit
+  1668                           ;	CP1 = OFF, Block 1 (002000-003FFFh) not code-protected
+  1669                           ;	Code Protection bit
+  1670                           ;	CP2 = OFF, Block 2 (004000-005FFFh) not code-protected
+  1671                           ;	Code Protection bit
+  1672                           ;	CP3 = OFF, Block 3 (006000-007FFFh) not code-protected
+  1673  300008                     	org	3145736
+  1674  300008  0F                 	db	15
+  1675                           
+  1676                           ;Config register CONFIG5H @ 0x300009
+  1677                           ;	Boot Block Code Protection bit
+  1678                           ;	CPB = OFF, Boot block (000000-0007FFh) not code-protected
+  1679                           ;	Data EEPROM Code Protection bit
+  1680                           ;	CPD = OFF, Data EEPROM not code-protected
+  1681  300009                     	org	3145737
+  1682  300009  C0                 	db	192
+  1683                           
+  1684                           ;Config register CONFIG6L @ 0x30000A
+  1685                           ;	Write Protection bit
+  1686                           ;	WRT0 = OFF, Block 0 (000800-001FFFh) not write-protected
+  1687                           ;	Write Protection bit
+  1688                           ;	WRT1 = OFF, Block 1 (002000-003FFFh) not write-protected
+  1689                           ;	Write Protection bit
+  1690                           ;	WRT2 = OFF, Block 2 (004000-005FFFh) not write-protected
+  1691                           ;	Write Protection bit
+  1692                           ;	WRT3 = OFF, Block 3 (006000-007FFFh) not write-protected
+  1693  30000A                     	org	3145738
+  1694  30000A  0F                 	db	15
+  1695                           
+  1696                           ;Config register CONFIG6H @ 0x30000B
+  1697                           ;	Configuration Register Write Protection bit
+  1698                           ;	WRTC = OFF, Configuration registers (300000-3000FFh) not write-protected
+  1699                           ;	Boot Block Write Protection bit
+  1700                           ;	WRTB = OFF, Boot block (000000-0007FFh) not write-protected
+  1701                           ;	Data EEPROM Write Protection bit
+  1702                           ;	WRTD = OFF, Data EEPROM not write-protected
+  1703  30000B                     	org	3145739
+  1704  30000B  E0                 	db	224
+  1705                           
+  1706                           ;Config register CONFIG7L @ 0x30000C
+  1707                           ;	Table Read Protection bit
+  1708                           ;	EBTR0 = OFF, Block 0 (000800-001FFFh) not protected from table reads executed in other
+      +                           blocks
+  1709                           ;	Table Read Protection bit
+  1710                           ;	EBTR1 = OFF, Block 1 (002000-003FFFh) not protected from table reads executed in other
+      +                           blocks
+  1711                           ;	Table Read Protection bit
+  1712                           ;	EBTR2 = OFF, Block 2 (004000-005FFFh) not protected from table reads executed in other
+      +                           blocks
+  1713                           ;	Table Read Protection bit
+  1714                           ;	EBTR3 = OFF, Block 3 (006000-007FFFh) not protected from table reads executed in other
+      +                           blocks
+  1715  30000C                     	org	3145740
+  1716  30000C  0F                 	db	15
+  1717                           
+  1718                           ;Config register CONFIG7H @ 0x30000D
+  1719                           ;	Boot Block Table Read Protection bit
+  1720                           ;	EBTRB = OFF, Boot block (000000-0007FFh) not protected from table reads executed in ot
+      +                          her blocks
+  1721  30000D                     	org	3145741
+  1722  30000D  40                 	db	64
+  1723                           tosu	equ	0xFFF
+  1724                           tosh	equ	0xFFE
+  1725                           tosl	equ	0xFFD
+  1726                           stkptr	equ	0xFFC
+  1727                           pclatu	equ	0xFFB
+  1728                           pclath	equ	0xFFA
+  1729                           pcl	equ	0xFF9
+  1730                           tblptru	equ	0xFF8
+  1731                           tblptrh	equ	0xFF7
+  1732                           tblptrl	equ	0xFF6
+  1733                           tablat	equ	0xFF5
+  1734                           prodh	equ	0xFF4
+  1735                           prodl	equ	0xFF3
+  1736                           indf0	equ	0xFEF
+  1737                           postinc0	equ	0xFEE
+  1738                           postdec0	equ	0xFED
+  1739                           preinc0	equ	0xFEC
+  1740                           plusw0	equ	0xFEB
+  1741                           fsr0h	equ	0xFEA
+  1742                           fsr0l	equ	0xFE9
+  1743                           wreg	equ	0xFE8
+  1744                           indf1	equ	0xFE7
+  1745                           postinc1	equ	0xFE6
+  1746                           postdec1	equ	0xFE5
+  1747                           preinc1	equ	0xFE4
+  1748                           plusw1	equ	0xFE3
+  1749                           fsr1h	equ	0xFE2
+  1750                           fsr1l	equ	0xFE1
+  1751                           bsr	equ	0xFE0
+  1752                           indf2	equ	0xFDF
+  1753                           postinc2	equ	0xFDE
+  1754                           postdec2	equ	0xFDD
+  1755                           preinc2	equ	0xFDC
+  1756                           plusw2	equ	0xFDB
+  1757                           fsr2h	equ	0xFDA
+  1758                           fsr2l	equ	0xFD9
+  1759                           status	equ	0xFD8
+
+Data Sizes:
+    Strings     15
+    Constant    0
+    Data        0
+    BSS         42
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM          126     26      68
+    BANK0           128      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+
+Pointer List with Targets:
+
+    strcpy@dest	PTR unsigned char  size(2) Largest target is 20
+		 -> str(COMRAM[20]), 
+
+    strcpy@d	PTR unsigned char  size(2) Largest target is 20
+		 -> str(COMRAM[20]), 
+
+    strcpy@src	PTR const unsigned char  size(2) Largest target is 20
+		 -> buffer(COMRAM[20]), 
+
+    strcpy@s	PTR const unsigned char  size(2) Largest target is 20
+		 -> buffer(COMRAM[20]), 
+
+    sp__strcpy	PTR unsigned char  size(2) Largest target is 20
+		 -> str(COMRAM[20]), 
+
+    UART_Write_Text@text	PTR unsigned char  size(2) Largest target is 7
+		 -> STR_4(CODE[7]), STR_3(CODE[3]), STR_2(CODE[7]), STR_1(CODE[5]), 
+
+    sp__GetString	PTR unsigned char  size(2) Largest target is 20
+		 -> buffer(COMRAM[20]), 
+
+
+Critical Paths under _main in COMRAM
+
+    _main->_strcpy
+    _strcpy->_GetString
+    _Mode3->_ClearBuffer
+    _GetString->_UART_Write
+
+Critical Paths under _Lo_ISR in COMRAM
+
+    None.
+
+Critical Paths under _HI_ISR in COMRAM
+
+    _HI_ISR->_UART_Write_Text
+    _UART_Write_Text->i2_UART_Write
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _Lo_ISR in BANK0
+
+    None.
+
+Critical Paths under _HI_ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _Lo_ISR in BANK1
+
+    None.
+
+Critical Paths under _HI_ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _Lo_ISR in BANK2
+
+    None.
+
+Critical Paths under _HI_ISR in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _Lo_ISR in BANK3
+
+    None.
+
+Critical Paths under _HI_ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _Lo_ISR in BANK4
+
+    None.
+
+Critical Paths under _HI_ISR in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _Lo_ISR in BANK5
+
+    None.
+
+Critical Paths under _HI_ISR in BANK5
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     540
+                        _ClearBuffer
+                          _GetString
+                              _Mode3
+                    _UART_Initialize
+                      _VR_Initialize
+                             _strcpy
+ ---------------------------------------------------------------------------------
+ (1) _strcpy                                               8     4      4     248
+                                             18 COMRAM     8     4      4
+                          _GetString (ARG)
+ ---------------------------------------------------------------------------------
+ (1) _VR_Initialize                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _UART_Initialize                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _Mode3                                                0     0      0      45
+                        _ClearBuffer
+ ---------------------------------------------------------------------------------
+ (2) _ClearBuffer                                          2     2      0      45
+                                             12 COMRAM     2     2      0
+ ---------------------------------------------------------------------------------
+ (1) _GetString                                            5     3      2     202
+                                             13 COMRAM     5     3      2
+                         _UART_Write
+ ---------------------------------------------------------------------------------
+ (2) _UART_Write                                           1     1      0      45
+                                             12 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _Lo_ISR                                               1     1      0       0
+                                             11 COMRAM     1     1      0
+                        _MyusartRead
+ ---------------------------------------------------------------------------------
+ (4) _MyusartRead                                          0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 4
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (5) _HI_ISR                                               4     4      0     582
+                                              7 COMRAM     4     4      0
+                    _UART_Write_Text
+                              _delay
+ ---------------------------------------------------------------------------------
+ (6) _delay                                                5     3      2     122
+                                              0 COMRAM     5     3      2
+ ---------------------------------------------------------------------------------
+ (6) _UART_Write_Text                                      6     4      2     460
+                                              1 COMRAM     6     4      2
+                       i2_UART_Write
+ ---------------------------------------------------------------------------------
+ (7) i2_UART_Write                                         1     1      0      66
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 7
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _ClearBuffer
+   _GetString
+     _UART_Write
+   _Mode3
+     _ClearBuffer
+   _UART_Initialize
+   _VR_Initialize
+   _strcpy
+     _GetString (ARG)
+
+ _Lo_ISR (ROOT)
+   _MyusartRead
+
+ _HI_ISR (ROOT)
+   _UART_Write_Text
+     i2_UART_Write
+   _delay
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             5FF      0       0      17        0.0%
+EEDATA             100      0       0       0        0.0%
+BITBANK5           100      0       0      16        0.0%
+BANK5              100      0       0      14        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            80      0       0       4        0.0%
+BANK0               80      0       0       5        0.0%
+BITCOMRAM           7E      0       0       0        0.0%
+COMRAM              7E     1A      44       1       54.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      44      15        0.0%
+DATA                 0      0      44       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+Symbol Table                                                                                   Wed Jan 19 03:00:01 2022
+
+                      l52 09A2                        l61 087E                        l70 076E  
+                      l55 0848                        l72 077C                        l65 0898  
+                      l49 09FA                        l58 0894                        l77 07EE  
+                      l88 092E                        u10 0856                        u11 0852  
+                      u20 0868                        u21 0864                        u30 087A  
+                      u31 0876                        u40 088C                        u41 0888  
+                      u50 0926                        u51 0922                        bsr 000FE0  
+                     l150 0A18                       l151 0A18                       l900 096E  
+                     l910 0996                       l902 0970                       l920 09A0  
+                     l912 0998                       l904 097C                       l850 087A  
+                     l914 099A                       l906 097E                       l842 096C  
+                     l852 088C                       l844 0848                       l860 08F6  
+                     l916 099C                       l908 0980                       l846 0856  
+                     l862 0906                       l854 08EE                       l918 099E  
+                     l848 0868                       l864 090A                       l880 09E4  
+                     l866 0926                       l970 0A02                       l890 09F0  
+                     l882 09E8                       l980 0A10                       l972 0A04  
+                     l892 09F2                       l884 09EA                       l982 0A12  
+                     l974 0A08                       l966 09FC                       l894 09F4  
+                     l886 09EC                       l878 09D4                       l984 0A14  
+                     l976 0A0C                       l968 0A00                       l896 09F6  
+                     l888 09EE                       l986 0A16                       l978 0A0E  
+                     l898 09F8                       u330 077C                       u331 0778  
+                     u340 0794                       u341 0790                       u350 07A6  
+                     u351 07A2                       u360 07E6                       u440 070E  
+                     u361 07E2                       u441 070A                       u450 0720  
+                     u451 071C                       u460 0732                       u461 072E  
+                     u390 096C                       u470 0744                       u391 0968  
+                     u471 0740                       u480 0756                       u481 0752  
+                     _str 0003                       wreg 000FE8                      l1110 0940  
+                    l1108 0930                      l1150 06D8                      l1160 0720  
+                    l1152 06E0                      l1090 07E6                      l1082 07B0  
+                    l1074 0782                      l1162 0732                      l1154 06E4  
+                    l1084 07C0                      l1076 0794                      l1068 0766  
+                    l1164 0744                      l1156 06FC                      l1086 07C6  
+                    l1078 07A6                      l1166 0756                      l1158 070E  
+                    l1088 07CA                      STR_1 0608                      STR_2 0601  
+                    STR_3 060D                      STR_4 0601                      _CREN 007D5C  
+                    _LATD 000F8C                      _RCIF 007CF5                      i1l91 0A3C  
+                    i2l61 08D2                      i1l93 0A4A                      i1l94 0A4C  
+                    i2l55 089C                      i2l65 08EC                      i2l58 08E8  
+                    i2l83 0844                      _main 06D8                      fsr1h 000FE2  
+                    fsr2h 000FDA                      indf1 000FE7                      indf2 000FDF  
+                    fsr1l 000FE1                      fsr2l 000FD9                      btemp 0045  
+                    start 004C              ___param_bank 000000   __end_of_UART_Write_Text 0846  
+        ?_UART_Initialize 002B                     ?_main 002B                     i1l101 0044  
+                   i2l140 0670                     i2l135 09D2                     i2l147 06C4  
+                   i1l958 0A3C                     i1l992 001E                     i1l994 002C  
+                   i1l996 003A                     i1l998 0040                     _RCREG 000FAE  
+                   _SPBRG 000FAF                     _TRISD 000F95                     _TXREG 000FAD  
+                   _Mode3 09FC               ?_UART_Write 002B                     _delay 09A4  
+             _ClearBuffer 08EE                     tablat 000FF5                     ttemp5 0046  
+                   ttemp6 0049                     ttemp7 004D                     status 000FD8  
+                   wtemp8 0046           __initialization 0A1E              __end_of_main 0766  
+   __end_of_VR_Initialize 09A4                    ??_main 0045             __activetblptr 000001  
+      __size_of_GetString 008A                    ?_Mode3 002B                    ?_delay 002B  
+                  i2l1100 081C                    i2l1102 09A4                    i2l1104 09B0  
+                  i2l1120 064E                    i2l1112 0624                    i2l1106 09B4  
+                  i2l1130 067E                    i2l1122 0650                    i2l1114 0632  
+                  i2l1060 08AA                    i2l1140 06A8                    i2l1132 068E  
+                  i2l1124 065C                    i2l1116 0642                    i2l1062 08BC  
+                  i2l1142 06B4                    i2l1134 0696                    i2l1126 0668  
+                  i2l1118 064A                    i2l1064 08CE                    i2l1144 06B6  
+                  i2l1136 069A                    i2l1128 066A                    i2l1066 08E0  
+                  i2l1058 089C                    i2l1138 069C                    i2l1146 06B8  
+                  i2l1094 07F0                    i2l1096 07FC                    i2l1098 0818  
+                  _HI_ISR 0008                    _Lo_ISR 0018       __size_of_UART_Write 0054  
+        ?_UART_Write_Text 002C                    _buffer 0017                    _lenStr 0001  
+                  delay@i 002E                    clear_0 0A24                    isa$std 000001  
+                  _strcpy 0930              __mediumconst 0000                    tblptrh 000FF7  
+                  tblptrl 000FF6                    tblptru 000FF8                __accesstop 0080  
+ __end_of__initialization 0A2A             ___rparam_used 000001         __end_of_GetString 07F0  
+           __end_of_Mode3 0A1E            __pcstackCOMRAM 002B             __end_of_delay 09D4  
+           ??_MyusartRead 0036                   ??_Mode3 0039             ?i2_UART_Write 002B  
+                 ??_delay 002D                   ?_HI_ISR 002B          i2UART_Write@data 002B  
+                 ?_Lo_ISR 002B                   ?_strcpy 003D            ??i2_UART_Write 002B  
+            ??_UART_Write 0037                   i1u15_20 0A4A                   i1u15_21 0A46  
+                 i1u18_20 002C                   i1u18_21 0028                   i1u19_20 003A  
+                 i1u19_21 0036                   i2u30_40 08BC                   i2u30_41 08B8  
+                 i2u31_40 08CE                   i2u31_41 08CA                   i2u32_40 08E0  
+                 i2u40_40 0632                   i2u32_41 08DC                   i2u40_41 062E  
+                 i2u41_40 0642                   i2u41_41 063E                   i2u42_40 067E  
+                 i2u42_41 067A                   i2u43_40 068E                   i2u43_41 068A  
+                 i2u29_40 08AA                   i2u37_40 0844                   i2u29_41 08A6  
+                 i2u37_41 0840                   i2u38_40 09D2                   i2u38_41 09CE  
+            ?_ClearBuffer 002B       __end_of_MyusartRead 0A4E           __size_of_HI_ISR 06D0  
+         __size_of_Lo_ISR 0034                   __Hparam 0000                   __Lparam 0000  
+      __end_of_UART_Write 089A              __psmallconst 0600                   __pcinit 0A1E  
+                 __ramtop 0600                   __ptext0 06D8                   __ptext1 0930  
+                 __ptext2 096E                   __ptext3 09D4                   __ptext4 09FC  
+                 __ptext5 08EE                   __ptext6 0766                   __ptext7 0846  
+                 __ptext9 0A3C           __size_of_strcpy 003E  __size_of_UART_Initialize 0028  
+          __pintcode_body 0612      end_of_initialization 0A2A                   int_func 0612  
+               _RCSTAbits 000FAB                   postinc0 000FEE                   strcpy@d 0043  
+                 strcpy@s 0041            UART_Write@data 0037                 _TRISAbits 000F92  
+               _TRISBbits 000F93                 _TRISCbits 000F94               _MyusartRead 0A3C  
+  __size_of_VR_Initialize 0036            __end_of_HI_ISR 06D8                 _TXSTAbits 000FAC  
+          __end_of_Lo_ISR 004C      __end_ofi2_UART_Write 08EE                 _GetString 0766  
+             _BAUDCONbits 000FB8  __size_of_UART_Write_Text 0056            __end_of_strcpy 096E  
+     start_initialization 0A1E              ClearBuffer@i 0037                  ??_HI_ISR 0032  
+       ??_UART_Initialize 0037      __size_of_ClearBuffer 0042                  ??_Lo_ISR 0036  
+           _VR_Initialize 096E                ?_GetString 0038                  ??_strcpy 0041  
+             __pbssCOMRAM 0001                 __pintcode 0008            ?_VR_Initialize 002B  
+             __pintcodelo 0018               __smallconst 0600            __size_of_Mode3 0022  
+          __size_of_delay 0030         ??_UART_Write_Text 002E     __size_ofi2_UART_Write 0054  
+                _IPR1bits 000F9F                  _PIE1bits 000F9D                  _PIR1bits 000F9E  
+                _RCONbits 000FD0               ??_GetString 003A                _ADCON0bits 000FC2  
+              _ADCON1bits 000FC1                _ADCON2bits 000FC0              ?_MyusartRead 002B  
+            i2_UART_Write 089A               _INTCON2bits 000FF1               _INTCON3bits 000FF0  
+                __Hrparam 0000           ??_VR_Initialize 0037                  __Lrparam 0000  
+            __Lsmallconst 0600           _UART_Initialize 09D4                  __ptext11 09A4  
+                __ptext12 07F0                  __ptext13 089A                strcpy@dest 003D  
+     UART_Write_Text@text 002C             __size_of_main 008E                  delay@num 002B  
+                isa$xinst 000000                  int$flags 0045                _INTCONbits 000FF2  
+           ??_ClearBuffer 0037                  intlevel1 0000                  intlevel2 0000  
+               strcpy@src 003F                _OSCCONbits 000FD3   __end_of_UART_Initialize 09FC  
+         _UART_Write_Text 07F0                GetString@c 003C                GetString@i 003A  
+              _UART_Write 0846      __size_of_MyusartRead 0012          UART_Write_Text@i 0030  
+     __end_of_ClearBuffer 0930  
